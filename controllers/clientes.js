@@ -217,7 +217,7 @@ function consultar_total_clientes_paginados(req, res, page, limit, p_razon, p_co
 
     //return console.log(query);
 
-    var paginacion = ` LIMIT ${page}, ${limit} ORDER BY clienteID`;
+    var paginacion = ` LIMIT ${page}, ${limit} ORDER BY clienteID `;
     query = query + paginacion;
     //return console.log(query);
 
