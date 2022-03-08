@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+        integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous"> -->
+
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"> -->
+   <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" 
+rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <!-- <link rel="stylesheet" href="./style.css"> -->
+  <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <title>Crear PDF con Node.js</title>
+    <style>
+        .label-input{
+          font-family: 'Poppins';
+          font-weight: 600;
+          font-size: 15px;
+          color: black;
+          text-align: left;
+          margin: auto 0px;
+          padding: 5px 0px;
+        }
+        .input{
+          font-family: 'Poppins';
+          font-weight: 500;
+          font-size: 14px;
+          color: #717171;
+          margin: auto 0px;
+          text-decoration: underline #717171;
+          text-align: left;
+          padding: 5px 0px;
+        }
+        .table-bordered{
+          border-color: black;
+        }
+        .table-bordered.light > thead{
+          border-color: #CBCBCB;
+          background-color: #707070 !important;
+          color: white;
+          font-family: 'Poppins';
+          margin: auto;
+          vertical-align: middle;
+          text-align: center;
+          font-size: 13px;
+        }
+        .table-bordered.light > tbody > tr > td{
+          border-color: #CBCBCB;
+          background-color: white !important;
+          color: #555555;
+          font-family: 'Poppins';
+          margin: auto;
+          padding: 20px 0px;
+          vertical-align: middle;
+          text-align: center;
+          font-size: 13px;
+        }
+        .table-bordered.light > tbody > tr > td.cell-id{
+          border-color: #CBCBCB;
+          background-color: #A4A4A4 !important;
+          color: white;
+          font-family: 'Poppins';
+          margin: auto;
+          padding: 20px 0px;
+          vertical-align: middle;
+          text-align: center;
+          font-size: 14px;
+        }
+        .table-bordered > tbody> tr > td{
+          border-color: black;
+          border-bottom-width: 1px !important;
+        }
+        .cell{
+          font-family: 'Poppins';
+          font-weight: 800;
+          font-size: 17px;
+          margin: auto;
+          vertical-align: middle;
+          text-align: center;
+        }
+        .cell-active{
+          font-family: 'Poppins';
+          font-weight: 600;
+          font-size: 16px;
+          margin: auto;
+          vertical-align: middle;
+          text-align: center;
+          background-color: #D0421C !important;
+          color: white;
+        }
+        .cell-code{
+          font-family: 'Poppins';
+          font-weight: 500;
+          font-size: 16px;
+          margin: auto;
+          vertical-align: middle;
+          text-align: center;
+        }
+        .div-dark{
+          border-color: #707070;
+          border-width: 0.5px;
+          border-style: solid;
+          background-color: #707070 !important;
+          color: white;
+          font-family: 'Poppins';
+          font-weight: 600; 
+          padding: 15px 0px;
+          vertical-align: middle;
+          text-align: center;
+          font-size: 13px;
+        }
+        .div-light{
+          border-color: #707070;
+          border-width: 0.5px;
+          border-style: solid;
+          background-color: white !important;
+          color: #707070;
+          font-family: 'Poppins';
+          font-weight: 600;
+          
+          padding: 15px 0px;
+          vertical-align: middle;
+          text-align: center;
+          font-size: 13px;
+        }
+    </style>
+<script async src='/cdn-cgi/bm/cv/669835187/api.js'></script><script async src='/cdn-cgi/bm/cv/669835187/api.js'></script></head>
+
+<body>
+  <!--div_table-->
+  <div class="col-12 p-5 pb-3">
+    <table class="table table-bordered">
+      <tr>
+        <td rowspan="2">VUELA</td>
+        <td rowspan="2" class="cell">ORDEN DE COMPRA</td>
+        <td colspan="1" class="cell-active">CÓDIGO</td>
+      </tr>
+      <tr>
+        <td class="cell-code">OC100314</td>
+      </tr>
+    </table>
+  </div>
+
+  <!--div_datos-->
+  <div class="col-12 p-5 pt-0">
+    <div class="row">
+
+      <div class="col-6">
+        <div class="row">
+          <div class="col-4">
+            <p class="label-input">Proveedor</p>
+          </div>
+          <div class="col-8">
+            <p class="input">Nombre completo del proveedor</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-6">
+        <div class="row">
+          <div class="col-4">
+            <p class="label-input">Área solicitante</p>
+          </div>
+          <div class="col-8">
+            <p class="input">Área solicitante ingresada</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-6 mt-2">
+        <div class="row">
+          <div class="col-4">
+            <p class="label-input">Facturar a</p>
+          </div>
+          <div class="col-8">
+            <p class="input">Persona a la cual va facturar</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-6 mt-2">
+        <div class="row">
+          <div class="col-4">
+            <p class="label-input">Fecha</p>
+          </div>
+          <div class="col-8">
+            <p class="input">12/12/2022</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-6 mt-2">
+        <div class="row">
+          <div class="col-4">
+            <p class="label-input">NIT</p>
+          </div>
+          <div class="col-8">
+            <p class="input">000000000000</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-6 mt-2">
+        <div class="row">
+          <div class="col-4">
+            <p class="label-input">Forma de pago</p>
+          </div>
+          <div class="col-8">
+            <p class="input">Tarjeta de crédito</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-6 mt-2">
+        <div class="row">
+          <div class="col-4">
+            <p class="label-input">Descripción</p>
+          </div>
+          <div class="col-8">
+            <p class="input">Descripción de la orden</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-6 mt-2">
+        <div class="row">
+          <div class="col-4">
+            <p class="label-input">Moneda</p>
+          </div>
+          <div class="col-8">
+            <p class="input">Dolares americanos</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-6 mt-2">
+        <div class="row">
+          <div class="col-4">
+            <p class="label-input">Ticket</p>
+          </div>
+          <div class="col-8">
+            <p class="input">000000000</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-6 mt-2">
+        <div class="row">
+          <div class="col-4">
+            <p class="label-input">Tiempo de entrega</p>
+          </div>
+          <div class="col-8">
+            <p class="input">Tiempo en el que se hizo la entrega</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!--div_items-->
+
+  <div class="col-12 p-5 pt-0 pb-3">
+    <table class="table table-bordered light">
+      <thead>
+        <tr>
+          <td rowspan="2">ITEM</td>
+          <td rowspan="2">SKU</td>
+          <td rowspan="2">CÓDIGO DE FÁBRICA</td>
+          <td rowspan="2" >MARCA</td>
+          <td rowspan="2">DESCRIPCIÓN</td>
+          <td colspan="4">PEDIDO</td>
+        </tr>
+        <tr>
+          <td>UNIDAD</td>
+          <td>CANTIDAD</td>
+          <td>PRECIO UNITARIO BS</td>
+          <td>PRECIO TOTAL BS</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="cell-id">1</td>
+          <td>422 8484</td>
+          <td>121EEC1</td>
+          <td>MARCA 1</td>
+          <td>BUT I MUST HAVE EXPLAIN DESCRIPTION TO THIS ORDER</td>
+          <td>1</td>
+          <td>1</td>
+          <td>20.4 BS</td>
+          <td>20.4 BS</td>
+        </tr>
+        <tr>
+          <td class="cell-id">1</td>
+          <td>422 8484</td>
+          <td>121EEC1</td>
+          <td>MARCA 1</td>
+          <td>BUT I MUST HAVE EXPLAIN DESCRIPTION TO THIS ORDER</td>
+          <td>1</td>
+          <td>1</td>
+          <td>20.4 BS</td>
+          <td>20.4 BS</td>
+        </tr>
+        <tr>
+          <td class="cell-id">1</td>
+          <td>422 8484</td>
+          <td>121EEC1</td>
+          <td>MARCA 1</td>
+          <td>BUT I MUST HAVE EXPLAIN DESCRIPTION TO THIS ORDER</td>
+          <td>1</td>
+          <td>1</td>
+          <td>20.4 BS</td>
+          <td>20.4 BS</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!--div_precios-->
+  <div class="col-6 p-5 pt-3">
+    <div class="row">
+      <div class="col-4 div-dark">
+        SUB TOTAL
+      </div>
+      <div class="col-8 div-light">
+        123.32 BS
+      </div>
+    </div>
+
+    <div class="row mt-4">
+      <div class="col-4 div-dark">
+        DESCUENTO
+      </div>
+      <div class="col-8 div-light">
+        0.00 BS
+      </div>
+    </div>
+
+    <div class="row mt-4">
+      <div class="col-4 div-dark">
+        TOTAL
+      </div>
+      <div class="col-8 div-light">
+        123.32 BS
+      </div>
+    </div>
+  </div>
+
+  <!--div_solicitante-->
+  <div class="col-12 p-5 pt-0">
+    <table class="table table-bordered light">
+      <thead>
+        <tr>
+          <td>Solicitante</td>
+          <td>Administración</td>
+          <td>Conformidad de almacen</td>
+          <td>IMPORTANTE</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Leonardo Rafael Quispe Pacheco</td>
+          <td>Leonardo Rafael Quispe Pacheco</td>
+          <td>CONFORME</td>
+          <td>1. But i have explain But i have explain 
+            <br> 2 . But i have explain But i have explain 
+            <br> 3. But i have explain But i have explain</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  
+<script type="text/javascript">(function(){window['__CF$cv$params']={r:'6d849b54cbd274e7',m:'_MHFpX48DpypZwuhr9lEdn2rYdyuQem3KCD7BgOK5II-1643985130-0-AfxcZBA9uJcXxHd7mLxb2CztEnv+d+MG5am0nIyhM61Dr26/0rft3x9f/VqLiXDKK03Tm0fPuasTQ0vH5r4TPhUIelARU20VlUaAtbbnM5EqT4igjyWr8grcSeTW57gx9twPEbqiKlBKwE9Od/9hadBdTL/8WepQ52kyhcck/apFVCW2YiupGjRxWKBgEr7llw==',s:[0xcbd46b5e9a,0x3d1ba5a652],}})();</script><script type="text/javascript">(function(){window['__CF$cv$params']={r:'6d87671af922286c',m:'RUtpAl7wCGspRaEMYhYK_m726wBCpbLgl_FYLAUEtqU-1644014447-0-AdnC0W+M4L4bmdmJrDsbdzb3bxD5ThspcrIQSEwvKMvkUdvywRz7z9gwJc50kJ8ukD5TpODojViRqyw0K1YkyH1Z4L9R1UDII4dUqZz20yvPJVvlSSj6B6Mwv/jDLqoUgoKEECKU91DbHUMqYu81TAmazohM4vvl2GeYJBQttyKZFcrifL8o6ng5CtKGJgCSeiFE4n2y7Rfkii2oYHKa8ig=',s:[0xaf3332d4ee,0x13f2d4b66d],}})();</script></body>
+
+</html>
