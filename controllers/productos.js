@@ -177,7 +177,8 @@ function consultar_total_productos(req, res, p_deporte, p_talla, p_tela, p_sexo,
     select 
     prod.productoID, de.nombre_deporte, tel.nombre_tela, ta.descripcion_talla as nombre_talla, 
     prod.sexo_producto, prod.modelo_producto, prod.marca_producto, prod.costo_producto,
-    prod.codigo_producto, prod.descripcion, arc.base as imagen64
+    prod.codigo_producto, prod.descripcion, arc.base as imagen64, tel.telaID, ta.tallaID,
+    de.deporteID
     from producto prod
     inner join deporte de
     on de.deporteID = prod.deporteID
@@ -232,7 +233,8 @@ function consultar_total_productos_paginados(req, res, page, limit, p_deporte, p
     select 
     prod.productoID, de.nombre_deporte, tel.nombre_tela, ta.descripcion_talla as nombre_talla, 
     prod.sexo_producto, prod.modelo_producto, prod.marca_producto, prod.costo_producto,
-    prod.codigo_producto, prod.descripcion, arc.base as imagen64
+    prod.codigo_producto, prod.descripcion, arc.base as imagen64, tel.telaID, ta.tallaID,
+    de.deporteID
     from producto prod
     inner join deporte de
     on de.deporteID = prod.deporteID
