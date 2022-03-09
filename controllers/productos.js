@@ -144,7 +144,7 @@ function consultar_datos_productoID(req, res, id) {
     on tel.telaID = prod.telaID
     inner join talla ta
     on ta.tallaID = prod.talla_productoID
-    inner join archivo arc 
+    inner join archivo arc  
     on arc.productoID = prod.productoID
     where prod.productoID = "${id}" `;
 
