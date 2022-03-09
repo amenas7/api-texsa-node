@@ -135,7 +135,8 @@ function consultar_datos_productoID(req, res, id) {
     select 
     prod.productoID, de.nombre_deporte, tel.nombre_tela, ta.descripcion_talla as nombre_talla, 
     prod.sexo_producto, prod.modelo_producto, prod.marca_producto, prod.costo_producto,
-    prod.codigo_producto, prod.descripcion, arc.base as imagen64
+    prod.codigo_producto, prod.descripcion, arc.base as imagen64, de.deporteID, tel.telaID,
+    ta.tallaID
     from producto prod
     inner join deporte de
     on de.deporteID = prod.deporteID
