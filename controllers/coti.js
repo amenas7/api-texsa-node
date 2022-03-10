@@ -108,8 +108,8 @@ function consultar_total_cotizaciones(req, res, p_estado, p_moneda, p_comodin) {
          ` ;
         query = query + tercera_cond;
     }
-        // var final = ` `;
-        // query = query + final;
+         var final = ` ORDER BY cot.cotiID DESC `;
+         query = query + final;
 
     //return console.log(query);
 
@@ -154,7 +154,7 @@ function consultar_total_cotis_paginados(req, res, page, limit, p_estado, p_mone
 
     //return console.log(query);
 
-    var paginacion = ` LIMIT ${page}, ${limit} `;
+    var paginacion = ` ORDER BY cot.cotiID DESC LIMIT ${page}, ${limit} `;
     query = query + paginacion;
     //return console.log(query);
 

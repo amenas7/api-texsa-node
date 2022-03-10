@@ -214,8 +214,8 @@ function consultar_total_productos(req, res, p_deporte, p_talla, p_tela, p_sexo,
         OR marca_producto LIKE '%${p_comodin}%' OR codigo_producto LIKE '%${p_comodin}%' ` ;
         query = query + quinta_cond;
     }
-        // var final = ` `;
-        // query = query + final;
+         var final = ` ORDER BY prod.productoID DESC `;
+         query = query + final;
 
     //return console.log(query);
 
@@ -273,7 +273,7 @@ function consultar_total_productos_paginados(req, res, page, limit, p_deporte, p
 
     //return console.log(query);
 
-    var paginacion = ` LIMIT ${page}, ${limit} `;
+    var paginacion = ` ORDER BY prod.productoID DESC LIMIT ${page}, ${limit} `;
     query = query + paginacion;
     //return console.log(query);
 

@@ -154,7 +154,7 @@ function consultar_total_deportes(req, res) {
 
 function consultar_total_deportes_paginados(req, res, page, limit) {
     const query = `
-    SELECT * FROM deporte LIMIT ${page}, ${limit}`;
+    SELECT * FROM deporte ORDER BY deporteID DESC LIMIT ${page}, ${limit}`;
 
     return new Promise((resolve, reject) => {
         consql.query(query, (err, rows, fields) => {

@@ -154,7 +154,7 @@ function consultar_total_telas(req, res) {
 
 function consultar_total_telas_paginados(req, res, page, limit) {
     const query = `
-    SELECT * FROM tela LIMIT ${page}, ${limit}`;
+    SELECT * FROM tela ORDER BY telaID DESC LIMIT ${page}, ${limit}`;
 
     return new Promise((resolve, reject) => {
         consql.query(query, (err, rows, fields) => {

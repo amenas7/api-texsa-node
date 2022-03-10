@@ -177,8 +177,8 @@ function consultar_total_clientes(req, res, p_razon, p_codigo, p_ruc, p_comodin)
         OR telefono LIKE '%${p_comodin}%' OR email LIKE '%${p_comodin}%' ` ;
         query = query + cuarta_cond;
     }
-        // var final = ` `;
-        // query = query + final;
+         var final = ` ORDER BY clienteID DESC `;
+         query = query + final;
 
     //return console.log(query);
 
@@ -217,7 +217,7 @@ function consultar_total_clientes_paginados(req, res, page, limit, p_razon, p_co
 
     //return console.log(query);
 
-    var paginacion = ` LIMIT ${page}, ${limit} ORDER BY clienteID `;
+    var paginacion = ` ORDER BY clienteID DESC LIMIT ${page}, ${limit} `;
     query = query + paginacion;
     //return console.log(query);
 
