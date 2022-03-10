@@ -388,6 +388,7 @@ const actualizarProducto = async(req, res = response) => {
         const p_codigo_producto = req.body.codigo_producto;
         const p_descripcion = req.body.descripcion;
         const p_foto_imagen = req.file.filename;
+        const p_imagen64 = req.body.imagen64;
 
         const obtenerReg = await consultar_existe_producto(req, res, id);
 
@@ -420,7 +421,7 @@ const actualizarProducto = async(req, res = response) => {
             });
         }
 
-        await axion_actualizar_foto_producto( req, res, id, p_foto_imagen );
+        await axion_actualizar_foto_producto( req, res, id, p_foto_imagen, p_imagen64 );
 
         return res.status(200).json({
             ok: true,
@@ -475,11 +476,12 @@ const actualizarProducto = async(req, res = response) => {
     });
 }
 
-function axion_actualizar_foto_producto(req, res, id, p_foto_imagen) {
+function axion_actualizar_foto_producto(req, res, id, p_foto_imagen, p_imagen64) {
     const query = `
     UPDATE archivo
     SET nombre_archivo_original = "${p_foto_imagen}",
     nombre_archivo_server = "${p_foto_imagen}",
+    base = ${p_imagen64},
     fecha_mod = NOW(),
     modificadoPorID = "${req.uid}" 
     WHERE productoID = "${id}"
