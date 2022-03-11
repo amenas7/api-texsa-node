@@ -266,6 +266,7 @@ function consultar_detalle_productos(req, res, id) {
     inner join tela tel
     on tel.telaID = prod.telaID
     inner join talla ta
+    on ta.tallaID = prod.talla_productoID
     where de.cotiID = "${id}"  `;
 
     //return console.log(query);
