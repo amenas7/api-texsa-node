@@ -252,7 +252,7 @@ const reporte_soles_sin_igv = async(req, res, id) =>{
         contador ++;
         tabla += `<tr>
             <td style="vertical-align: middle">${contador}</td>
-            <td style="vertical-align: middle"><img style="width: 88%" src="${basi}"></td>
+            <td style="vertical-align: middle"><img style="width: 88%" src="file:\\\${basi}"></td>
             <td style="vertical-align: middle">${producto.cantidad}</td>
             <td style="vertical-align: middle">${producto.descripcion}</td>
             <td style="vertical-align: middle">${producto.marca_producto}</td>
@@ -260,7 +260,7 @@ const reporte_soles_sin_igv = async(req, res, id) =>{
             <td style="vertical-align: middle">${producto.pu_sol}</td>
             <td style="vertical-align: middle">${producto.sub_total_pu_sol}</td>
         </tr>`;
-        console.log(`<img src="${basi}">`);
+        console.log(`<img src="file:\\\${basi}">`);
     }
     
     // const descuento = 0;
