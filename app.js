@@ -32,8 +32,8 @@ app.use( cors({ origin: true, credentials: true }) );
 
 // body parser
 // parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true, parameterLimit: 50000 }))
+app.use(bodyParser.json( { limit: '50mb' } ))
 
 // app.use(fileUpload({
 //     useTempFiles : true,
