@@ -257,7 +257,7 @@ const reporte_soles_sin_igv = async(req, res, id) =>{
             <td style="vertical-align: middle">${producto.pu_sol}</td>
             <td style="vertical-align: middle">${producto.sub_total_pu_sol}</td>
         </tr>`;
-        console.log(`<img src="/public/${producto.nombre_archivo_original}">`);
+        console.log(`<img src="./public/${producto.nombre_archivo_original}">`);
     }
     
     // const descuento = 0;
@@ -1846,7 +1846,7 @@ function consultar_detalle_productos(req, res, id) {
     ', tela: ',tel.nombre_tela, ', talla: ',ta.descripcion_talla) as descripcion, pro.marca_producto, 
     pro.modelo_producto, (de.pu_sol + de.ce_sol) as pu_sol, (de.pu_peso + de.ce_peso) as pu_peso, 
     (de.pu_dolar + de.ce_dolar) pu_dolar, de.sub_total_pu_sol, de.sub_total_pu_peso, 
-    de.sub_total_pu_dolar,arc.base
+    de.sub_total_pu_dolar,arc.base, arc.nombre_archivo_original, arc.nombre_archivo_server
     from coti_detalle de
     inner join producto pro
     on pro.productoID = de.productoID
