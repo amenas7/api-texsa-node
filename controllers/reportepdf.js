@@ -156,6 +156,7 @@ const reporte_soles_con_igv = async(req, res, id) =>{
     contenidoHtml = contenidoHtml.replace("{{telefono}}", reg_cabecera[0]['telefono']);
     contenidoHtml = contenidoHtml.replace("{{email}}", reg_cabecera[0]['email']);
     contenidoHtml = contenidoHtml.replace("{{codigo}}", reg_cabecera[0]['codigo']);
+    contenidoHtml = contenidoHtml.replace("{{usuario}}", reg_cabecera[0]['nombrecompleto'])
 
     //fecha de la cotizacion
     const fecha = reg_cabecera[0]['otra_fecha'];
@@ -272,6 +273,7 @@ const reporte_soles_sin_igv = async(req, res, id) =>{
     contenidoHtml = contenidoHtml.replace("{{telefono}}", reg_cabecera[0]['telefono']);
     contenidoHtml = contenidoHtml.replace("{{email}}", reg_cabecera[0]['email']);
     contenidoHtml = contenidoHtml.replace("{{codigo}}", reg_cabecera[0]['codigo']);
+    contenidoHtml = contenidoHtml.replace("{{usuario}}", reg_cabecera[0]['nombrecompleto'])
     contenidoHtml = contenidoHtml.replace("{{total_g_sol}}", reg_cabecera[0]['total_g_sol']);
 
     //fecha de la cotizacion
@@ -387,6 +389,7 @@ const reporte_pesos_con_igv = async(req, res, id) =>{
     contenidoHtml = contenidoHtml.replace("{{telefono}}", reg_cabecera[0]['telefono']);
     contenidoHtml = contenidoHtml.replace("{{email}}", reg_cabecera[0]['email']);
     contenidoHtml = contenidoHtml.replace("{{codigo}}", reg_cabecera[0]['codigo']);
+    contenidoHtml = contenidoHtml.replace("{{usuario}}", reg_cabecera[0]['nombrecompleto'])
 
     //fecha de la cotizacion
     const fecha = reg_cabecera[0]['otra_fecha'];
@@ -503,6 +506,7 @@ const reporte_pesos_sin_igv = async(req, res, id) =>{
     contenidoHtml = contenidoHtml.replace("{{telefono}}", reg_cabecera[0]['telefono']);
     contenidoHtml = contenidoHtml.replace("{{email}}", reg_cabecera[0]['email']);
     contenidoHtml = contenidoHtml.replace("{{codigo}}", reg_cabecera[0]['codigo']);
+    contenidoHtml = contenidoHtml.replace("{{usuario}}", reg_cabecera[0]['nombrecompleto'])
     contenidoHtml = contenidoHtml.replace("{{total_g_peso}}", reg_cabecera[0]['total_g_peso']);
 
     //fecha de la cotizacion
@@ -618,6 +622,7 @@ const reporte_dolar_con_igv = async(req, res, id) =>{
     contenidoHtml = contenidoHtml.replace("{{telefono}}", reg_cabecera[0]['telefono']);
     contenidoHtml = contenidoHtml.replace("{{email}}", reg_cabecera[0]['email']);
     contenidoHtml = contenidoHtml.replace("{{codigo}}", reg_cabecera[0]['codigo']);
+    contenidoHtml = contenidoHtml.replace("{{usuario}}", reg_cabecera[0]['nombrecompleto'])
 
     //fecha de la cotizacion
     const fecha = reg_cabecera[0]['otra_fecha'];
@@ -734,6 +739,7 @@ const reporte_dolar_sin_igv = async(req, res, id) =>{
     contenidoHtml = contenidoHtml.replace("{{telefono}}", reg_cabecera[0]['telefono']);
     contenidoHtml = contenidoHtml.replace("{{email}}", reg_cabecera[0]['email']);
     contenidoHtml = contenidoHtml.replace("{{codigo}}", reg_cabecera[0]['codigo']);
+    contenidoHtml = contenidoHtml.replace("{{usuario}}", reg_cabecera[0]['nombrecompleto'])
     contenidoHtml = contenidoHtml.replace("{{total_g_dolar}}", reg_cabecera[0]['total_g_dolar']);
 
     //fecha de la cotizacion
@@ -851,6 +857,7 @@ const reporte_soles_pesos_con_igv = async(req, res, id) =>{
     contenidoHtml = contenidoHtml.replace("{{telefono}}", reg_cabecera[0]['telefono']);
     contenidoHtml = contenidoHtml.replace("{{email}}", reg_cabecera[0]['email']);
     contenidoHtml = contenidoHtml.replace("{{codigo}}", reg_cabecera[0]['codigo']);
+    contenidoHtml = contenidoHtml.replace("{{usuario}}", reg_cabecera[0]['nombrecompleto'])
 
     //fecha de la cotizacion
     const fecha = reg_cabecera[0]['otra_fecha'];
@@ -972,6 +979,7 @@ const reporte_soles_pesos_sin_igv = async(req, res, id) =>{
     contenidoHtml = contenidoHtml.replace("{{telefono}}", reg_cabecera[0]['telefono']);
     contenidoHtml = contenidoHtml.replace("{{email}}", reg_cabecera[0]['email']);
     contenidoHtml = contenidoHtml.replace("{{codigo}}", reg_cabecera[0]['codigo']);
+    contenidoHtml = contenidoHtml.replace("{{usuario}}", reg_cabecera[0]['nombrecompleto'])
 
     //fecha de la cotizacion
     const fecha = reg_cabecera[0]['otra_fecha'];
@@ -1091,6 +1099,7 @@ const reporte_soles_dolar_con_igv = async(req, res, id) =>{
     contenidoHtml = contenidoHtml.replace("{{telefono}}", reg_cabecera[0]['telefono']);
     contenidoHtml = contenidoHtml.replace("{{email}}", reg_cabecera[0]['email']);
     contenidoHtml = contenidoHtml.replace("{{codigo}}", reg_cabecera[0]['codigo']);
+    contenidoHtml = contenidoHtml.replace("{{usuario}}", reg_cabecera[0]['nombrecompleto'])
 
     //fecha de la cotizacion
     const fecha = reg_cabecera[0]['otra_fecha'];
@@ -1212,6 +1221,7 @@ const reporte_soles_dolar_sin_igv = async(req, res, id) =>{
     contenidoHtml = contenidoHtml.replace("{{telefono}}", reg_cabecera[0]['telefono']);
     contenidoHtml = contenidoHtml.replace("{{email}}", reg_cabecera[0]['email']);
     contenidoHtml = contenidoHtml.replace("{{codigo}}", reg_cabecera[0]['codigo']);
+    contenidoHtml = contenidoHtml.replace("{{usuario}}", reg_cabecera[0]['nombrecompleto'])
 
     //fecha de la cotizacion
     const fecha = reg_cabecera[0]['otra_fecha'];
@@ -1331,6 +1341,7 @@ const reporte_pesos_dolar_con_igv = async(req, res, id) =>{
     contenidoHtml = contenidoHtml.replace("{{telefono}}", reg_cabecera[0]['telefono']);
     contenidoHtml = contenidoHtml.replace("{{email}}", reg_cabecera[0]['email']);
     contenidoHtml = contenidoHtml.replace("{{codigo}}", reg_cabecera[0]['codigo']);
+    contenidoHtml = contenidoHtml.replace("{{usuario}}", reg_cabecera[0]['nombrecompleto'])
 
     //fecha de la cotizacion
     const fecha = reg_cabecera[0]['otra_fecha'];
@@ -1452,6 +1463,7 @@ const reporte_pesos_dolar_sin_igv = async(req, res, id) =>{
     contenidoHtml = contenidoHtml.replace("{{telefono}}", reg_cabecera[0]['telefono']);
     contenidoHtml = contenidoHtml.replace("{{email}}", reg_cabecera[0]['email']);
     contenidoHtml = contenidoHtml.replace("{{codigo}}", reg_cabecera[0]['codigo']);
+    contenidoHtml = contenidoHtml.replace("{{usuario}}", reg_cabecera[0]['nombrecompleto'])
 
     //fecha de la cotizacion
     const fecha = reg_cabecera[0]['otra_fecha'];
@@ -1574,6 +1586,7 @@ const reporte_soles_pesos_dolar_con_igv = async(req, res, id) =>{
     contenidoHtml = contenidoHtml.replace("{{telefono}}", reg_cabecera[0]['telefono']);
     contenidoHtml = contenidoHtml.replace("{{email}}", reg_cabecera[0]['email']);
     contenidoHtml = contenidoHtml.replace("{{codigo}}", reg_cabecera[0]['codigo']);
+    contenidoHtml = contenidoHtml.replace("{{usuario}}", reg_cabecera[0]['nombrecompleto'])
 
     //fecha de la cotizacion
     const fecha = reg_cabecera[0]['otra_fecha'];
@@ -1703,6 +1716,7 @@ const reporte_soles_pesos_dolar_sin_igv = async(req, res, id) =>{
     contenidoHtml = contenidoHtml.replace("{{telefono}}", reg_cabecera[0]['telefono']);
     contenidoHtml = contenidoHtml.replace("{{email}}", reg_cabecera[0]['email']);
     contenidoHtml = contenidoHtml.replace("{{codigo}}", reg_cabecera[0]['codigo']);
+    contenidoHtml = contenidoHtml.replace("{{usuario}}", reg_cabecera[0]['nombrecompleto'])
 
     //fecha de la cotizacion
     const fecha = reg_cabecera[0]['otra_fecha'];
@@ -1804,10 +1818,14 @@ function consultar_cabecera(req, res, id) {
     date_format(cot.fecha_reg, "%d-%m-%Y") as fecha_registro_coti, cot.fecha_reg as otra_fecha,
     cot.total_g_sol, cot.forma_pago, cot.validez_oferta, cot.tipo_impuesto, cot.total_g_peso,
     cot.total_g_dolar, cot.sub_total_g_sol, cot.sub_total_g_peso, cot.sub_total_g_dolar,
-    cot.imp_g_sol, cot.imp_g_peso, cot.imp_g_dolar, cot.tipo_moneda
+    cot.imp_g_sol, cot.imp_g_peso, cot.imp_g_dolar, cot.tipo_moneda, per.nombrecompleto
     from coti cot
     inner join cliente cli
     on cli.clienteID = cot.clienteID
+    inner join usuario usu
+    on usu.usuarioID = cot.registradoPorID
+    inner join persona per
+    on per.IDpersona = usu.IDpersona
     where cot.cotiID = "${id}"  `;
 
     //return console.log(query);
