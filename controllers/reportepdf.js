@@ -247,7 +247,8 @@ const reporte_soles_sin_igv = async(req, res, id) =>{
     //let subtotal = 0;
     let contador = 0;
     for (const producto of reg_detalle) {
-        var basi = __dirname + "./public/" + producto.nombre_archivo_original;
+        
+        var basi = path.join(__dirname , '../public/', producto.nombre_archivo_original );
         contador ++;
         tabla += `<tr>
             <td style="vertical-align: middle">${contador}</td>
