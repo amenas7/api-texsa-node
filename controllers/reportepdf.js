@@ -257,7 +257,7 @@ const reporte_soles_sin_igv = async(req, res, id) =>{
             <td style="vertical-align: middle">${producto.pu_sol}</td>
             <td style="vertical-align: middle">${producto.sub_total_pu_sol}</td>
         </tr>`;
-        //console.log(`${imagen}`);
+        console.log(`<img src="/public/${producto.nombre_archivo_original}">`);
     }
     
     // const descuento = 0;
