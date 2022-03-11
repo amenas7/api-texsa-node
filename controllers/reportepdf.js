@@ -249,6 +249,7 @@ const reporte_soles_sin_igv = async(req, res, id) =>{
     for (const producto of reg_detalle) {
         
         var basi = path.join(__dirname , '../public/', producto.nombre_archivo_original );
+        basi = basi.replace(new RegExp(/\\/g),'/');
         contador ++;
         tabla += `<tr>
             <td style="vertical-align: middle">${contador}</td>
@@ -260,7 +261,7 @@ const reporte_soles_sin_igv = async(req, res, id) =>{
             <td style="vertical-align: middle">${producto.pu_sol}</td>
             <td style="vertical-align: middle">${producto.sub_total_pu_sol}</td>
         </tr>`;
-        console.log(`<img src="file:\\\ ${basi}">`);
+        console.log(`<img src="${basi}">`);
     }
     
     // const descuento = 0;
