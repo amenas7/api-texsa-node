@@ -5,6 +5,7 @@ const path = require('path');
 const { subirArchivo } = require('../helpers/subir-archivo');
 const fs = require('fs');
 const pdf = require("html-pdf");
+const { dirname } = require('path');
 
 // Constantes propias del programa
 // const ubicacionPlantilla = require.resolve("../plantilla/demo.html");
@@ -246,6 +247,7 @@ const reporte_soles_sin_igv = async(req, res, id) =>{
     //let subtotal = 0;
     let contador = 0;
     for (const producto of reg_detalle) {
+        var basi = __dirname + "../public/" + producto.nombre_archivo_original;
         contador ++;
         tabla += `<tr>
             <td style="vertical-align: middle">${contador}</td>
@@ -257,7 +259,7 @@ const reporte_soles_sin_igv = async(req, res, id) =>{
             <td style="vertical-align: middle">${producto.pu_sol}</td>
             <td style="vertical-align: middle">${producto.sub_total_pu_sol}</td>
         </tr>`;
-        console.log(`<img src="../public/${producto.nombre_archivo_original}">`);
+        console.log(`<img src="${basi}">`);
     }
     
     // const descuento = 0;
