@@ -186,13 +186,13 @@ const reporte_soles_con_igv = async(req, res, id) =>{
     let p_resp_peso = '';
     let p_resp_dolar = '';
 
-    if (p_tipo_moneda == 'sol') {
+    if (p_tipo_moneda == 'Sol') {
         p_resp_sol = 'X';
     }
-    else if (p_tipo_moneda == 'peso'){
+    else if (p_tipo_moneda == 'Peso'){
         p_resp_peso = 'X';
     }
-    else if (p_tipo_moneda == 'dolar'){
+    else if (p_tipo_moneda == 'Dolar'){
         p_resp_dolar = 'X';
     }
     contenidoHtml = contenidoHtml.replace("{{p_resp_sol}}", p_resp_sol);
@@ -299,13 +299,13 @@ const reporte_soles_sin_igv = async(req, res, id) =>{
     let p_resp_peso = '';
     let p_resp_dolar = '';
 
-    if (p_tipo_moneda == 'sol') {
+    if (p_tipo_moneda == 'Sol') {
         p_resp_sol = 'X';
     }
-    else if (p_tipo_moneda == 'peso'){
+    else if (p_tipo_moneda == 'Peso'){
         p_resp_peso = 'X';
     }
-    else if (p_tipo_moneda == 'dolar'){
+    else if (p_tipo_moneda == 'Dolar'){
         p_resp_dolar = 'X';
     }
     contenidoHtml = contenidoHtml.replace("{{p_resp_sol}}", p_resp_sol);
@@ -419,13 +419,13 @@ const reporte_pesos_con_igv = async(req, res, id) =>{
     let p_resp_peso = '';
     let p_resp_dolar = '';
 
-    if (p_tipo_moneda == 'sol') {
+    if (p_tipo_moneda == 'Sol') {
         p_resp_sol = 'X';
     }
-    else if (p_tipo_moneda == 'peso'){
+    else if (p_tipo_moneda == 'Peso'){
         p_resp_peso = 'X';
     }
-    else if (p_tipo_moneda == 'dolar'){
+    else if (p_tipo_moneda == 'Dolar'){
         p_resp_dolar = 'X';
     }
     contenidoHtml = contenidoHtml.replace("{{p_resp_sol}}", p_resp_sol);
@@ -532,13 +532,13 @@ const reporte_pesos_sin_igv = async(req, res, id) =>{
     let p_resp_peso = '';
     let p_resp_dolar = '';
 
-    if (p_tipo_moneda == 'sol') {
+    if (p_tipo_moneda == 'Sol') {
         p_resp_sol = 'X';
     }
-    else if (p_tipo_moneda == 'peso'){
+    else if (p_tipo_moneda == 'Peso'){
         p_resp_peso = 'X';
     }
-    else if (p_tipo_moneda == 'dolar'){
+    else if (p_tipo_moneda == 'Dolar'){
         p_resp_dolar = 'X';
     }
     contenidoHtml = contenidoHtml.replace("{{p_resp_sol}}", p_resp_sol);
@@ -652,13 +652,13 @@ const reporte_dolar_con_igv = async(req, res, id) =>{
     let p_resp_peso = '';
     let p_resp_dolar = '';
 
-    if (p_tipo_moneda == 'sol') {
+    if (p_tipo_moneda == 'Sol') {
         p_resp_sol = 'X';
     }
-    else if (p_tipo_moneda == 'peso'){
+    else if (p_tipo_moneda == 'Peso'){
         p_resp_peso = 'X';
     }
-    else if (p_tipo_moneda == 'dolar'){
+    else if (p_tipo_moneda == 'Dolar'){
         p_resp_dolar = 'X';
     }
     contenidoHtml = contenidoHtml.replace("{{p_resp_sol}}", p_resp_sol);
@@ -765,13 +765,13 @@ const reporte_dolar_sin_igv = async(req, res, id) =>{
     let p_resp_peso = '';
     let p_resp_dolar = '';
 
-    if (p_tipo_moneda == 'sol') {
+    if (p_tipo_moneda == 'Sol') {
         p_resp_sol = 'X';
     }
-    else if (p_tipo_moneda == 'peso'){
+    else if (p_tipo_moneda == 'Peso'){
         p_resp_peso = 'X';
     }
-    else if (p_tipo_moneda == 'dolar'){
+    else if (p_tipo_moneda == 'Dolar'){
         p_resp_dolar = 'X';
     }
     contenidoHtml = contenidoHtml.replace("{{p_resp_sol}}", p_resp_sol);
@@ -890,13 +890,13 @@ const reporte_soles_pesos_con_igv = async(req, res, id) =>{
     let p_resp_peso = '';
     let p_resp_dolar = '';
 
-    if (p_tipo_moneda == 'sol') {
+    if (p_tipo_moneda == 'Sol') {
         p_resp_sol = 'X';
     }
-    else if (p_tipo_moneda == 'peso'){
+    else if (p_tipo_moneda == 'Peso'){
         p_resp_peso = 'X';
     }
-    else if (p_tipo_moneda == 'dolar'){
+    else if (p_tipo_moneda == 'Dolar'){
         p_resp_dolar = 'X';
     }
     contenidoHtml = contenidoHtml.replace("{{p_resp_sol}}", p_resp_sol);
@@ -1008,13 +1008,13 @@ const reporte_soles_pesos_sin_igv = async(req, res, id) =>{
     let p_resp_peso = '';
     let p_resp_dolar = '';
 
-    if (p_tipo_moneda == 'sol') {
+    if (p_tipo_moneda == 'Sol') {
         p_resp_sol = 'X';
     }
-    else if (p_tipo_moneda == 'peso'){
+    else if (p_tipo_moneda == 'Peso'){
         p_resp_peso = 'X';
     }
-    else if (p_tipo_moneda == 'dolar'){
+    else if (p_tipo_moneda == 'Dolar'){
         p_resp_dolar = 'X';
     }
     contenidoHtml = contenidoHtml.replace("{{p_resp_sol}}", p_resp_sol);
@@ -1132,13 +1132,13 @@ const reporte_soles_dolar_con_igv = async(req, res, id) =>{
     let p_resp_peso = '';
     let p_resp_dolar = '';
 
-    if (p_tipo_moneda == 'sol') {
+    if (p_tipo_moneda == 'Sol') {
         p_resp_sol = 'X';
     }
-    else if (p_tipo_moneda == 'peso'){
+    else if (p_tipo_moneda == 'Peso'){
         p_resp_peso = 'X';
     }
-    else if (p_tipo_moneda == 'dolar'){
+    else if (p_tipo_moneda == 'Dolar'){
         p_resp_dolar = 'X';
     }
     contenidoHtml = contenidoHtml.replace("{{p_resp_sol}}", p_resp_sol);
@@ -1250,13 +1250,13 @@ const reporte_soles_dolar_sin_igv = async(req, res, id) =>{
     let p_resp_peso = '';
     let p_resp_dolar = '';
 
-    if (p_tipo_moneda == 'sol') {
+    if (p_tipo_moneda == 'Sol') {
         p_resp_sol = 'X';
     }
-    else if (p_tipo_moneda == 'peso'){
+    else if (p_tipo_moneda == 'Peso'){
         p_resp_peso = 'X';
     }
-    else if (p_tipo_moneda == 'dolar'){
+    else if (p_tipo_moneda == 'Dolar'){
         p_resp_dolar = 'X';
     }
     contenidoHtml = contenidoHtml.replace("{{p_resp_sol}}", p_resp_sol);
@@ -1374,13 +1374,13 @@ const reporte_pesos_dolar_con_igv = async(req, res, id) =>{
     let p_resp_peso = '';
     let p_resp_dolar = '';
 
-    if (p_tipo_moneda == 'sol') {
+    if (p_tipo_moneda == 'Sol') {
         p_resp_sol = 'X';
     }
-    else if (p_tipo_moneda == 'peso'){
+    else if (p_tipo_moneda == 'Peso'){
         p_resp_peso = 'X';
     }
-    else if (p_tipo_moneda == 'dolar'){
+    else if (p_tipo_moneda == 'Dolar'){
         p_resp_dolar = 'X';
     }
     contenidoHtml = contenidoHtml.replace("{{p_resp_sol}}", p_resp_sol);
@@ -1492,13 +1492,13 @@ const reporte_pesos_dolar_sin_igv = async(req, res, id) =>{
     let p_resp_peso = '';
     let p_resp_dolar = '';
 
-    if (p_tipo_moneda == 'sol') {
+    if (p_tipo_moneda == 'Sol') {
         p_resp_sol = 'X';
     }
-    else if (p_tipo_moneda == 'peso'){
+    else if (p_tipo_moneda == 'Peso'){
         p_resp_peso = 'X';
     }
-    else if (p_tipo_moneda == 'dolar'){
+    else if (p_tipo_moneda == 'Dolar'){
         p_resp_dolar = 'X';
     }
     contenidoHtml = contenidoHtml.replace("{{p_resp_sol}}", p_resp_sol);
@@ -1624,13 +1624,13 @@ const reporte_soles_pesos_dolar_con_igv = async(req, res, id) =>{
     let p_resp_peso = '';
     let p_resp_dolar = '';
 
-    if (p_tipo_moneda == 'sol') {
+    if (p_tipo_moneda == 'Sol') {
         p_resp_sol = 'X';
     }
-    else if (p_tipo_moneda == 'peso'){
+    else if (p_tipo_moneda == 'Peso'){
         p_resp_peso = 'X';
     }
-    else if (p_tipo_moneda == 'dolar'){
+    else if (p_tipo_moneda == 'Dolar'){
         p_resp_dolar = 'X';
     }
     contenidoHtml = contenidoHtml.replace("{{p_resp_sol}}", p_resp_sol);
@@ -1746,13 +1746,13 @@ const reporte_soles_pesos_dolar_sin_igv = async(req, res, id) =>{
     let p_resp_peso = '';
     let p_resp_dolar = '';
 
-    if (p_tipo_moneda == 'sol') {
+    if (p_tipo_moneda == 'Sol') {
         p_resp_sol = 'X';
     }
-    else if (p_tipo_moneda == 'peso'){
+    else if (p_tipo_moneda == 'Peso'){
         p_resp_peso = 'X';
     }
-    else if (p_tipo_moneda == 'dolar'){
+    else if (p_tipo_moneda == 'Dolar'){
         p_resp_dolar = 'X';
     }
     contenidoHtml = contenidoHtml.replace("{{p_resp_sol}}", p_resp_sol);
