@@ -302,8 +302,8 @@ const crearProducto = async(req, res) => {
         const p_costo_producto = req.body.costo_producto;
         const p_codigo_producto = req.body.codigo_producto;
         const p_descripcion = req.body.descripcion;
-        const p_foto_imagen = req.file.filename;
-        const p_imagen64 = req.body.imagen64;
+        //const p_foto_imagen = req.file.filename;
+        //const p_imagen64 = req.body.imagen64;
 
         const p_foto = req.file.path;
         const p_tipado = req.file.mimetype;
@@ -332,7 +332,7 @@ const crearProducto = async(req, res) => {
         }
 
         const idproducto_subido = reg.insertId;
-        await registrar_foto_producto( req, res, idproducto_subido, p_foto_imagen, p_imagen_final );
+        await registrar_foto_producto( req, res, idproducto_subido, p_imagen_final );
         
         return res.status(201).json({
             ok: true,
@@ -368,10 +368,10 @@ function registrar_producto(req, res, p_deporteID, p_telaID, p_sexo_producto,
     });
 }
 
-function registrar_foto_producto(req, res, idproducto_subido, p_foto_imagen, p_imagen64) {
+function registrar_foto_producto(req, res, idproducto_subido, p_imagen64) {
     const query = `
-    insert into archivo ( productoID, nombre_archivo_original, nombre_archivo_server, fecha_reg, registradoPorID, base ) values 
-    ( "${idproducto_subido}", "${p_foto_imagen}", "${p_foto_imagen}", now(), "${req.uid}", "${p_imagen64}" ) `;
+    insert into archivo ( productoID, fecha_reg, registradoPorID, base ) values 
+    ( "${idproducto_subido}", now(), "${req.uid}", "${p_imagen64}" ) `;
 
     return new Promise((resolve, reject) => {
         consql.query(query, (err, rows, fields) => {
