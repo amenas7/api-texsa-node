@@ -308,6 +308,11 @@ const crearProducto = async(req, res) => {
         //const p_foto = req.file.path;
         //const p_tipado = req.file.mimetype;
 
+        if ( !req.files || Object.keys(req.files).length === 0 || !req.files.archivo ) {
+            res.status(400).json( {mensaje:'No hay archivos que subir'} );
+            return;
+        }
+
         return console.log(req.file);
 
         //const nombreCortado = p_foto.name.split('.');
