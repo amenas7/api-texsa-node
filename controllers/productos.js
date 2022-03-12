@@ -308,6 +308,8 @@ const crearProducto = async(req, res) => {
         const p_foto = req.file.path;
         const p_tipado = req.file.mimetype;
 
+        return console.log(req.file);
+
         //const nombreCortado = p_foto.name.split('.');
         //const nombreOriginal = p_foto.name;
         //const extension = nombreCortado[ nombreCortado.length - 1 ];
