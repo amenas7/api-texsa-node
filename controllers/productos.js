@@ -305,7 +305,7 @@ const crearProducto = async(req, res) => {
         //const p_foto_imagen = req.file.filename;
         //const p_imagen64 = req.body.imagen64;
 
-        const p_foto = req.file.path;
+        //const p_foto = req.file.path;
         const p_tipado = req.file.mimetype;
 
         return console.log(req.file);
