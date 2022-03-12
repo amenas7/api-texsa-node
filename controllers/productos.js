@@ -358,9 +358,10 @@ function registrar_producto(req, res, p_deporteID, p_telaID, p_sexo_producto,
     return new Promise((resolve, reject) => {
         consql.query(query, (err, rows, fields) => {
             if (err) {
-                consql.rollback(()=>{
-                    return reject(err);
-                });
+                // consql.rollback(()=>{
+                //     return reject(err);
+                // });
+                return reject(err);
             }
             resolve(rows);
         });
@@ -505,9 +506,10 @@ function axion_actualizar_foto_producto(req, res, id, p_foto_imagen, p_imagen64)
     return new Promise((resolve, reject) => {
         consql.query(query, (err, rows, fields) => {
             if (err) {
-                consql.rollback(()=>{
-                    return reject(err);
-                });
+                // consql.rollback(()=>{
+                //     return reject(err);
+                // });
+                return reject(err);
             }
             resolve(rows);
         });
