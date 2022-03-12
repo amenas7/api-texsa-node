@@ -201,9 +201,10 @@ function registrar_deporte(req, res, p_nombre) {
     return new Promise((resolve, reject) => {
         consql.query(query, (err, rows, fields) => {
             if (err) {
-                consql.rollback(()=>{
-                    return reject(err);
-                });
+                // consql.rollback(()=>{
+                //     return reject(err);
+                // });
+                return reject(err);
             }
             resolve(rows);
         });

@@ -375,9 +375,10 @@ function registrar_foto_producto(req, res, idproducto_subido, p_foto_imagen, p_i
     return new Promise((resolve, reject) => {
         consql.query(query, (err, rows, fields) => {
             if (err) {
-                consql.rollback(()=>{
-                    return reject(err);
-                });
+                // consql.rollback(()=>{
+                //     return reject(err);
+                // });
+                return reject(err);
             }
             resolve(rows);
         });

@@ -272,9 +272,10 @@ function registrar_cliente(req, res, p_nombre, p_razon_social, p_ruc, p_direccio
     return new Promise((resolve, reject) => {
         consql.query(query, (err, rows, fields) => {
             if (err) {
-                consql.rollback(()=>{
-                    return reject(err);
-                });
+                // consql.rollback(()=>{
+                //     return reject(err);
+                // });
+                return reject(err);
             }
             resolve(rows);
         });

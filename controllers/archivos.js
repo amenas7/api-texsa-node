@@ -139,9 +139,10 @@ function registrar_documento_a_la_compra(req, res, arreglo) {
     return new Promise((resolve, reject) => {
         consql.query(query, (err, rows, fields) => {
             if (err) {
-                consql.rollback(()=>{
-                    return reject(err);
-                });
+                // consql.rollback(()=>{
+                //     return reject(err);
+                // });
+                return reject(err);
             }
             resolve(rows);
         });
