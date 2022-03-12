@@ -305,7 +305,21 @@ const crearProducto = async(req, res) => {
         const p_foto_imagen = req.file.filename;
         const p_imagen64 = req.body.imagen64;
 
-        //return console.log(p_deporteID);
+        const p_foto = req.file.path;
+        const p_tipado = req.file.mimetype;
+
+        //const nombreCortado = p_foto.name.split('.');
+        //const nombreOriginal = p_foto.name;
+        //const extension = nombreCortado[ nombreCortado.length - 1 ];
+
+        //return console.log(p_foto);
+        // read binary data
+        var bitmap = fs.readFileSync(p_foto, 'base64');
+        // convert binary data to base64 encoded string
+        //var valor = Buffer.from(bitmap).toString('base64');
+        const p_imagen_final = 'data:'+p_tipado+';base64,'+bitmap;
+        //return console.log(p_imagen_final);
+
         const reg = await registrar_producto( req, res, p_deporteID, p_telaID, p_sexo_producto, 
             p_modelo_producto, p_talla_productoID, p_marca_producto, p_costo_producto, p_codigo_producto,
             p_descripcion );
@@ -318,7 +332,7 @@ const crearProducto = async(req, res) => {
         }
 
         const idproducto_subido = reg.insertId;
-        await registrar_foto_producto( req, res, idproducto_subido, p_foto_imagen, p_imagen64 );
+        await registrar_foto_producto( req, res, idproducto_subido, p_foto_imagen, p_imagen_final );
         
         return res.status(201).json({
             ok: true,
