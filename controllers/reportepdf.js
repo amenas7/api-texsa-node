@@ -1692,7 +1692,7 @@ const reporte_soles_pesos_dolar_sin_igv = async(req, res, id) =>{
         contador ++;
         tabla += `<tr>
             <td style="vertical-align: middle">${contador}</td>
-            <td style="vertical-align: middle"><img style="width: 88%" src="${producto.base}"></td>
+            <td style="vertical-align: middle"><img style="width: 70%" src="${producto.base}"></td>
             <td style="vertical-align: middle">${producto.cantidad}</td>
             <td style="vertical-align: middle">${producto.descripcion}</td>
             <td style="vertical-align: middle">${producto.marca_producto}</td>
