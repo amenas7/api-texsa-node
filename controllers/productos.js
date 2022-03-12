@@ -313,7 +313,7 @@ const crearProducto = async(req, res) => {
             return;
         }
 
-        return console.log(req.file);
+        return console.log(req.files);
 
         //const nombreCortado = p_foto.name.split('.');
         //const nombreOriginal = p_foto.name;
