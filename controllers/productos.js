@@ -408,55 +408,95 @@ const actualizarProducto = async(req, res = response) => {
             })
         }
 
-        const p_deporteID = req.body.deporteID;
-        const p_telaID = req.body.telaID;
-        const p_sexo_producto = req.body.sexo_producto;
-        const p_modelo_producto = req.body.modelo_producto;
-        const p_talla_productoID = req.body.talla_productoID;
-        const p_marca_producto = req.body.marca_producto;
-        const p_costo_producto = req.body.costo_producto;
-        const p_codigo_producto = req.body.codigo_producto;
-        const p_descripcion = req.body.descripcion;
-        const p_foto = req.file.path;
-        const p_tipado = req.file.mimetype;
+        if ( !req.file ) {
+            const p_deporteID = req.body.deporteID;
+            const p_telaID = req.body.telaID;
+            const p_sexo_producto = req.body.sexo_producto;
+            const p_modelo_producto = req.body.modelo_producto;
+            const p_talla_productoID = req.body.talla_productoID;
+            const p_marca_producto = req.body.marca_producto;
+            const p_costo_producto = req.body.costo_producto;
+            const p_codigo_producto = req.body.codigo_producto;
+            const p_descripcion = req.body.descripcion;
 
-        // read binary data
-        var bitmap = fs.readFileSync(p_foto, 'base64');
-        const p_imagen_final = 'data:'+p_tipado+';base64,'+bitmap;
+            let arreglo = {
+                idd: id,
+                deporteID : p_deporteID,
+                telaID : p_telaID,
+                sexo_producto : p_sexo_producto,
+                modelo_producto : p_modelo_producto,
+                talla_productoID : p_talla_productoID,
+                marca_producto : p_marca_producto,
+                costo_producto : p_costo_producto,
+                codigo_producto : p_codigo_producto,
+                descripcion : p_descripcion
+            }
 
-        let arreglo = {
-            idd: id,
-            deporteID : p_deporteID,
-            telaID : p_telaID,
-            sexo_producto : p_sexo_producto,
-            modelo_producto : p_modelo_producto,
-            talla_productoID : p_talla_productoID,
-            marca_producto : p_marca_producto,
-            costo_producto : p_costo_producto,
-            codigo_producto : p_codigo_producto,
-            descripcion : p_descripcion
-        }
+            const p_axion_actualizar_producto = await axion_actualizar_producto(req, res, arreglo);
 
-        const p_axion_actualizar_producto = await axion_actualizar_producto(req, res, arreglo);
+            if ( p_axion_actualizar_producto.affectedRows < 1 ) {
+                return res.status(400).json({
+                    ok: false,
+                    mensaje: 'No se modificó los datos del producto'
+                });
+            }
 
-        if ( p_axion_actualizar_producto.affectedRows < 1 ) {
-            return res.status(400).json({
-                ok: false,
-                mensaje: 'No se modificó los datos del producto'
+            return res.status(200).json({
+                ok: true,
+                mensaje: "Producto modificado"
             });
         }
+        else{
+            const p_deporteID = req.body.deporteID;
+            const p_telaID = req.body.telaID;
+            const p_sexo_producto = req.body.sexo_producto;
+            const p_modelo_producto = req.body.modelo_producto;
+            const p_talla_productoID = req.body.talla_productoID;
+            const p_marca_producto = req.body.marca_producto;
+            const p_costo_producto = req.body.costo_producto;
+            const p_codigo_producto = req.body.codigo_producto;
+            const p_descripcion = req.body.descripcion;
+            const p_foto = req.file.path;
+            const p_tipado = req.file.mimetype;
 
-        await axion_actualizar_foto_producto( req, res, id, p_imagen_final );
+            // read binary data
+            var bitmap = fs.readFileSync(p_foto, 'base64');
+            const p_imagen_final = 'data:'+p_tipado+';base64,'+bitmap;
 
-        // Delete the file like normal
-        if ( fs.existsSync(p_foto) ) {
-            fs.unlinkSync(p_foto);
+            let arreglo = {
+                idd: id,
+                deporteID : p_deporteID,
+                telaID : p_telaID,
+                sexo_producto : p_sexo_producto,
+                modelo_producto : p_modelo_producto,
+                talla_productoID : p_talla_productoID,
+                marca_producto : p_marca_producto,
+                costo_producto : p_costo_producto,
+                codigo_producto : p_codigo_producto,
+                descripcion : p_descripcion
+            }
+
+            const p_axion_actualizar_producto = await axion_actualizar_producto(req, res, arreglo);
+
+            if ( p_axion_actualizar_producto.affectedRows < 1 ) {
+                return res.status(400).json({
+                    ok: false,
+                    mensaje: 'No se modificó los datos del producto'
+                });
+            }
+
+            await axion_actualizar_foto_producto( req, res, id, p_imagen_final );
+
+            // Delete the file like normal
+            if ( fs.existsSync(p_foto) ) {
+                fs.unlinkSync(p_foto);
+            }
+
+            return res.status(200).json({
+                ok: true,
+                mensaje: "Producto modificado"
+            });
         }
-
-        return res.status(200).json({
-            ok: true,
-            mensaje: "Producto modificado"
-        });
 
     } catch (error) {
         res.status(500).json({
