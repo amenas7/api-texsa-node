@@ -30,7 +30,12 @@ app.use( cors({ origin: true, credentials: true }) );
 //     methods: ['GET', 'POST', 'PUT', 'DELETE'],
 //     origin: '*'
 // }))
-app.use(fileUpload());
+
+
+//app.use(fileUpload());
+
+
+
 // body parser
 // parse application/x-www-form-urlencoded
 // app.use(express.json({limit: '50mb'}));

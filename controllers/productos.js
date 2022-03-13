@@ -293,13 +293,13 @@ function consultar_total_productos_paginados(req, res, page, limit, p_deporte, p
 // ==========================================
 const crearProducto = async(req, res) => {
     try {
-        if ( !req.files || Object.keys(req.files).length === 0 || !req.files.archivo ) {
-            res.status(400).json( {mensaje:'No seleccionó un archivo'} );
-            return;
-        }
+        // if ( !req.files || Object.keys(req.files).length === 0 || !req.files.archivo ) {
+        //     res.status(400).json( {mensaje:'No seleccionó un archivo'} );
+        //     return;
+        // }
 
-        console.log("archivo: "+req.files.archivo);
-        console.log("files: "+req.files.archivo.data);
+        return console.log("archivo: "+req.file);
+        //console.log("files: "+req.files.archivo.data);
 
         const p_deporteID = req.body.deporteID;
         const p_telaID = req.body.telaID;
