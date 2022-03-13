@@ -299,7 +299,7 @@ const crearProducto = async(req, res) => {
         }
 
         console.log("archivo: "+req.files.archivo);
-        console.log("files: "+req.files);
+        console.log("files: "+req.files.archivo.data);
 
         const p_deporteID = req.body.deporteID;
         const p_telaID = req.body.telaID;
@@ -310,7 +310,7 @@ const crearProducto = async(req, res) => {
         const p_costo_producto = req.body.costo_producto;
         const p_codigo_producto = req.body.codigo_producto;
         const p_descripcion = req.body.descripcion;
-        const p_foto = req.files.path;
+        const p_foto = req.files.archivo.data;
         const p_tipado = req.files.mimetype;
 
         // read binary data
