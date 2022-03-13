@@ -3,7 +3,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 const path = require('path');
 const cors = require('cors');
-var fileUpload = require('express-fileupload');
+const fileUpload = require("express-fileupload");
 
 // var fileUpload = require('express-fileupload');
 
@@ -30,7 +30,7 @@ app.use( cors({ origin: true, credentials: true }) );
 //     methods: ['GET', 'POST', 'PUT', 'DELETE'],
 //     origin: '*'
 // }))
-app.use(fileupload());
+app.use(fileUpload());
 // body parser
 // parse application/x-www-form-urlencoded
 // app.use(express.json({limit: '50mb'}));
