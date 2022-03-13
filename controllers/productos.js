@@ -408,7 +408,7 @@ const actualizarProducto = async(req, res = response) => {
             })
         }
 
-        if ( !req.file ) {
+        if ( !req.file.path ) {
             const p_deporteID = req.body.deporteID;
             const p_telaID = req.body.telaID;
             const p_sexo_producto = req.body.sexo_producto;
