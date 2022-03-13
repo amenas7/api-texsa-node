@@ -312,7 +312,10 @@ const crearProducto = async(req, res) => {
             res.status(400).json( {mensaje:'No hay archivos que subir'} );
             return;
         }
-
+        else {
+            res.status(400).json( {mensaje:'si!', valor: req.files.archivo} );
+            return;
+        }
         return console.log(req.files);
 
         //const nombreCortado = p_foto.name.split('.');

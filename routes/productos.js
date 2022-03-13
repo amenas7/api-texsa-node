@@ -44,7 +44,7 @@ router.post('/',
                 //validarCampos,
             ],
             validarJWT,
-            upload.single('archivo'),
+            //upload.single('archivo'),
             crearProducto 
 );
 
