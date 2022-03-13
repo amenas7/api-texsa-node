@@ -61,8 +61,6 @@ app.use(bodyParser.json())
 
 
 
-
-
 /* ---- funcional ---- */
 app.use( '/api/login', require('./routes/auth') );
 app.use('/api/deportes', require('./routes/deportes') );
@@ -80,30 +78,7 @@ app.use('/api/reporteotropdf', require('./routes/reporteotropdf') );
 
 app.use('/api/email', require('./routes/email') );
 // app.use('/api/usuarios', require('./routes/usuarios') );
-// app.use('/api/monedas', require('./routes/monedas') );
-// app.use('/api/proveedores', require('./routes/proveedores') );
-// app.use('/api/almacenes', require('./routes/almacenes') );
-// app.use('/api/item', require('./routes/item') );
-// app.use('/api/ocompra', require('./routes/ocompra') );
-// app.use('/api/autorizaciones', require('./routes/autorizaciones') );
-// app.use('/api/autorizacionespend', require('./routes/autorizacionespend') );
-// app.use('/api/autorizacionesproc', require('./routes/autorizacionesproc') );
-// app.use('/api/usuarios_estado', require('./routes/usuarios_estado') );
-// app.use('/api/usuarios_rol', require('./routes/usuarios_rol') );
-// app.use('/api/comentarios', require('./routes/comentarios') );
-// app.use('/api/archivos', require('./routes/archivos') );
-// app.use('/api/reportes', require('./routes/reportes') );
-// app.use('/api/itemp', require('./routes/itemp') );
-// app.use('/api/area', require('./routes/area') );
-// app.use( '/api/loginG', require('./routes/loginG') );
-// app.use( '/api/usuarios_filtro', require('./routes/usuarios_filtro') );
-// app.use( '/api/descargar_archivo', require('./routes/descargar_archivo') );
-// app.use('/api/formas_pago', require('./routes/formas_pago') );
-// app.use('/api/tiempos_entrega', require('./routes/tiempos_entrega') );
-// app.use('/api/archivosM', require('./routes/archivosM') );
-// app.use('/api/reportepdf', require('./routes/reportepdf') );
 
-// app.use('/api/estadooc', require('./routes/estadooc') );
 // escuchar peticiones
 const port = process.env.PORT || 4000;
 app.listen(port, () => {
