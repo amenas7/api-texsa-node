@@ -293,6 +293,11 @@ function consultar_total_productos_paginados(req, res, page, limit, p_deporte, p
 // ==========================================
 const crearProducto = async(req, res) => {
     try {
+        if ( !req.files || Object.keys(req.files).length === 0 || !req.files.archivo ) {
+            res.status(400).json( {mensaje:'No seleccionó un archivo'} );
+            return;
+        }
+
         const p_deporteID = req.body.deporteID;
         const p_telaID = req.body.telaID;
         const p_sexo_producto = req.body.sexo_producto;
@@ -302,27 +307,9 @@ const crearProducto = async(req, res) => {
         const p_costo_producto = req.body.costo_producto;
         const p_codigo_producto = req.body.codigo_producto;
         const p_descripcion = req.body.descripcion;
-        //const p_foto_imagen = req.file.filename;
-        //const p_imagen64 = req.body.imagen64;
+        const p_foto = req.file.path;
+        const p_tipado = req.file.mimetype;
 
-        //const p_foto = req.file.path;
-        //const p_tipado = req.file.mimetype;
-
-        if ( !req.files || Object.keys(req.files).length === 0 || !req.files.archivo ) {
-            res.status(400).json( {mensaje:'No hay archivos que subir'} );
-            return;
-        }
-        else {
-            res.status(400).json( {mensaje:'si!', valor: req.files.archivo} );
-            return;
-        }
-        return console.log(req.files);
-
-        //const nombreCortado = p_foto.name.split('.');
-        //const nombreOriginal = p_foto.name;
-        //const extension = nombreCortado[ nombreCortado.length - 1 ];
-
-        //return console.log(p_foto);
         // read binary data
         var bitmap = fs.readFileSync(p_foto, 'base64');
         // convert binary data to base64 encoded string
