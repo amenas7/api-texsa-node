@@ -408,9 +408,9 @@ const actualizarProducto = async(req, res = response) => {
             })
         }
 
-        console.log(req.file.originalname);
+        if ( req.file.originalname == 'imageFileName.png' ) {
+            console.log("mantener imagen");
 
-        if ( !req.file.path ) {
             const p_deporteID = req.body.deporteID;
             const p_telaID = req.body.telaID;
             const p_sexo_producto = req.body.sexo_producto;
