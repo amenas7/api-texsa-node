@@ -399,6 +399,15 @@ const actualizarProducto = async(req, res = response) => {
 
     try {
         const id = req.params.id;
+        const obtenerReg = await consultar_existe_producto(req, res, id);
+
+        if ( !obtenerReg ) {
+            return res.status(500).json({
+                ok: false,
+                mensaje: 'No existe un producto con el parametro buscado'
+            })
+        }
+
         const p_deporteID = req.body.deporteID;
         const p_telaID = req.body.telaID;
         const p_sexo_producto = req.body.sexo_producto;
@@ -408,17 +417,12 @@ const actualizarProducto = async(req, res = response) => {
         const p_costo_producto = req.body.costo_producto;
         const p_codigo_producto = req.body.codigo_producto;
         const p_descripcion = req.body.descripcion;
-        const p_foto_imagen = req.file.filename;
-        const p_imagen64 = req.body.imagen64;
+        const p_foto = req.file.path;
+        const p_tipado = req.file.mimetype;
 
-        const obtenerReg = await consultar_existe_producto(req, res, id);
-
-        if ( !obtenerReg ) {
-            return res.status(500).json({
-                ok: false,
-                mensaje: 'No existe un producto con el parametro buscado'
-            })
-        }
+        // read binary data
+        var bitmap = fs.readFileSync(p_foto, 'base64');
+        const p_imagen_final = 'data:'+p_tipado+';base64,'+bitmap;
 
         let arreglo = {
             idd: id,
@@ -442,11 +446,16 @@ const actualizarProducto = async(req, res = response) => {
             });
         }
 
-        await axion_actualizar_foto_producto( req, res, id, p_foto_imagen, p_imagen64 );
+        await axion_actualizar_foto_producto( req, res, id, p_imagen_final );
+
+        // Delete the file like normal
+        if ( fs.existsSync(p_foto) ) {
+            fs.unlinkSync(p_foto);
+        }
 
         return res.status(200).json({
             ok: true,
-            mensaje: "Se guardaron los cambios exitosamente"
+            mensaje: "Producto modificado"
         });
 
     } catch (error) {
@@ -500,9 +509,7 @@ const actualizarProducto = async(req, res = response) => {
 function axion_actualizar_foto_producto(req, res, id, p_foto_imagen, p_imagen64) {
     const query = `
     UPDATE archivo
-    SET nombre_archivo_original = "${p_foto_imagen}",
-    nombre_archivo_server = "${p_foto_imagen}",
-    base = ${p_imagen64},
+    SET base = ${p_imagen64},
     fecha_mod = NOW(),
     modificadoPorID = "${req.uid}" 
     WHERE productoID = "${id}"
