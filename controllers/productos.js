@@ -311,7 +311,7 @@ const crearProducto = async(req, res) => {
         const p_codigo_producto = req.body.codigo_producto;
         const p_descripcion = req.body.descripcion;
         const p_foto = req.file.path;
-        const p_tipado = req.files.mimetype;
+        const p_tipado = req.file.mimetype;
 
         // read binary data
         var bitmap = fs.readFileSync(p_foto, 'base64');
