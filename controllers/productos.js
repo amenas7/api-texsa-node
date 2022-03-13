@@ -409,7 +409,7 @@ const actualizarProducto = async(req, res = response) => {
         }
 
         if ( req.file.originalname == 'imageFileName.png' ) {
-            console.log("mantener imagen");
+            //console.log("mantener imagen");
 
             const p_deporteID = req.body.deporteID;
             const p_telaID = req.body.telaID;
