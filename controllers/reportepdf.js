@@ -17,7 +17,7 @@ const { dirname } = require('path');
 const getReporteByID = async (req, res) => {
 
     const id = req.params.id;
-    return console.log(id);
+    //return console.log(id);
 
     const obtenerReg = await consultar_existe_coti(req, res, id);
     const p_opciones = req.body.opciones;
@@ -248,12 +248,12 @@ const reporte_soles_sin_igv = async(req, res, id) =>{
     let contador = 0;
     for (const producto of reg_detalle) {
         
-        var basi = path.join(__dirname , '../public/', producto.nombre_archivo_original );
-        basi = basi.replace(new RegExp(/\\/g),'/');
+        //var basi = path.join(__dirname , '../public/', producto.nombre_archivo_original );
+        //basi = basi.replace(new RegExp(/\\/g),'/');
         contador ++;
         tabla += `<tr>
             <td style="vertical-align: middle">${contador}</td>
-            <td style="vertical-align: middle"><img style="width: 88%" src="file:///${basi}"></td>
+            <td style="vertical-align: middle"><img style="width: 88%" src="${producto.base}"></td>
             <td style="vertical-align: middle">${producto.cantidad}</td>
             <td style="vertical-align: middle">${producto.descripcion}</td>
             <td style="vertical-align: middle">${producto.marca_producto}</td>
@@ -261,7 +261,7 @@ const reporte_soles_sin_igv = async(req, res, id) =>{
             <td style="vertical-align: middle">${producto.pu_sol}</td>
             <td style="vertical-align: middle">${producto.sub_total_pu_sol}</td>
         </tr>`;
-        console.log(`<img src="file:///${basi}">`);
+        //console.log(`<img src="file:///${basi}">`);
     }
     
     // const descuento = 0;
