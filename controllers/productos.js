@@ -335,7 +335,9 @@ const crearProducto = async(req, res) => {
         await registrar_foto_producto( req, res, idproducto_subido, p_imagen_final );
 
         // Delete the file like normal
-        await unlinkAsync(p_foto)
+        if ( fs.existsSync(p_foto) ) {
+            fs.unlinkSync(p_foto);
+        }
         
         return res.status(201).json({
             ok: true,
