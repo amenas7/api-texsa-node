@@ -298,9 +298,9 @@ const crearProducto = async(req, res) => {
             return;
         }
 
-        console.log(req.file.archivo);
-        console.log(req.file);
-        
+        console.log(req.files.archivo);
+        console.log(req.files);
+
         const p_deporteID = req.body.deporteID;
         const p_telaID = req.body.telaID;
         const p_sexo_producto = req.body.sexo_producto;
