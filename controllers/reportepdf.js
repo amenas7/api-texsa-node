@@ -17,7 +17,7 @@ const { dirname } = require('path');
 const getReporteByID = async (req, res) => {
 
     const id = req.params.id;
-    //return console.log(id);
+    return console.log(id);
 
     const obtenerReg = await consultar_existe_coti(req, res, id);
     const p_opciones = req.body.opciones;
