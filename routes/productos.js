@@ -41,7 +41,7 @@ router.get('/:id',
 router.post('/', 
             [
                 //check('nombre', 'El nombre del deporte es obligatorio').not().isEmpty(),
-                validarCampos,
+                //validarCampos,
             ],
             validarJWT,
             //upload.single('archivo'),

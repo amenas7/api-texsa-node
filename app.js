@@ -36,8 +36,7 @@ app.use( cors({ origin: true, credentials: true }) );
 // app.use(express.urlencoded({limit: '50mb', extended: true, parameterLimit: 50000}));
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
-
-app.use('/public', express.static(path.join(__dirname, 'public'))); 
+//app.use('/public', express.static(path.join(__dirname, 'public'))); 
 
 // app.use(fileUpload({
 //     useTempFiles : true,
