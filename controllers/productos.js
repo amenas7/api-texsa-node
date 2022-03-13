@@ -333,6 +333,9 @@ const crearProducto = async(req, res) => {
 
         const idproducto_subido = reg.insertId;
         await registrar_foto_producto( req, res, idproducto_subido, p_imagen_final );
+
+        // Delete the file like normal
+        await unlinkAsync(p_foto)
         
         return res.status(201).json({
             ok: true,
