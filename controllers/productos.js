@@ -516,7 +516,7 @@ function axion_actualizar_foto_producto(req, res, id, p_imagen64) {
     modificadoPorID = "${req.uid}" 
     WHERE productoID = "${id}"
     `;
-    //return console.log(query);
+    return console.log(query);
     return new Promise((resolve, reject) => {
         consql.query(query, (err, rows, fields) => {
             if (err) {
