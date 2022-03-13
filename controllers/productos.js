@@ -408,7 +408,7 @@ const actualizarProducto = async(req, res = response) => {
             })
         }
 
-        console.log(req.file);
+        console.log(req.file.originalname);
 
         if ( !req.file.path ) {
             const p_deporteID = req.body.deporteID;
