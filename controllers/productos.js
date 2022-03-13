@@ -508,7 +508,7 @@ const actualizarProducto = async(req, res = response) => {
     });
 }
 
-function axion_actualizar_foto_producto(req, res, id, p_foto_imagen, p_imagen64) {
+function axion_actualizar_foto_producto(req, res, id, p_imagen64) {
     const query = `
     UPDATE archivo
     SET base = ${p_imagen64},
