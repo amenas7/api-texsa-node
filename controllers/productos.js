@@ -5,8 +5,8 @@ const consql = require('../database/database');
 const { generarJWT } = require('../helpers/jwt');
 
 // manejar archivos
-const path = require('path');
-const { subirArchivo } = require('../helpers/subir-archivo');
+// const path = require('path');
+// const { subirArchivo } = require('../helpers/subir-archivo');
 var fs = require('fs');
 
 
@@ -298,6 +298,7 @@ const crearProducto = async(req, res) => {
             return;
         }
 
+        console.log(req.files);
         const p_deporteID = req.body.deporteID;
         const p_telaID = req.body.telaID;
         const p_sexo_producto = req.body.sexo_producto;
@@ -307,8 +308,8 @@ const crearProducto = async(req, res) => {
         const p_costo_producto = req.body.costo_producto;
         const p_codigo_producto = req.body.codigo_producto;
         const p_descripcion = req.body.descripcion;
-        const p_foto = req.file.path;
-        const p_tipado = req.file.mimetype;
+        const p_foto = req.files.path;
+        const p_tipado = req.files.mimetype;
 
         // read binary data
         var bitmap = fs.readFileSync(p_foto, 'base64');
