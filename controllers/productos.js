@@ -511,12 +511,12 @@ const actualizarProducto = async(req, res = response) => {
 function axion_actualizar_foto_producto(req, res, id, p_imagen64) {
     const query = `
     UPDATE archivo
-    SET base = ${p_imagen64},
+    SET base = "${p_imagen64}",
     fecha_mod = NOW(),
     modificadoPorID = "${req.uid}" 
     WHERE productoID = "${id}"
     `;
-    return console.log(query);
+    //return console.log(query);
     return new Promise((resolve, reject) => {
         consql.query(query, (err, rows, fields) => {
             if (err) {
