@@ -192,29 +192,32 @@
 
   <!--div datos del cliente-->
   <div class="" style="padding: 12px !important; margin-top: -35px;">
-      <table style="text-align: center; vertical-align: middle;">
+      <table style="text-align: center; vertical-align: middle; width: 100%; border: 1px solid red !important;">
         <thead>
           <tr>
-            <th style="background-color: #EEEEEE !important; font-family: 'Roboto Condensed', sans-serif; font-size: 9px !important; padding-top: 5px; padding-bottom: 5px; font-weight: bold; border: 1px solid #555; width: 37%; text-align: left; padding-left: 5px; text-align: center;">Forma de pago</th>
-            <th style="font-family: 'Roboto Condensed', sans-serif; font-size: 9px !important; padding-top: 5px; padding-bottom: 5px; font-weight: bold; border: 1px solid #555; width: 25%; text-align: center;">Crédito ( {{p_credito}} )</th>
-            <th colspan="2" style="font-family: 'Roboto Condensed', sans-serif; font-size: 9px !important; padding-top: 5px; padding-bottom: 5px; font-weight: bold; border: 1px solid #555; width: 38%; text-align: center; margin-right: 10px !important;">Contado ( {{p_contado}} )</th>
+            <th colspan="4" style="color: white !important; background-color: #438DBB !important; font-family: 'Roboto Condensed', sans-serif; font-size: 9px !important; padding-top: 2px; padding-bottom: 2px; border: 1px solid #555; width: 37%; text-align: left; padding-left: 5px; text-align: center;">Datos del cliente</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td style="background-color: #EEEEEE !important; font-family: 'Roboto Condensed', sans-serif; font-size: 9px !important; padding-top: 5px; padding-bottom: 5px; font-weight: bold; border: 1px solid #555; text-align: center !important;">Tipo de pago moneda</td>
-            <td style="font-family: 'Roboto Condensed', sans-serif; font-size: 9px !important; padding-top: 5px; padding-bottom: 5px; font-weight: bold; border: 1px solid #555; text-align: center;">Soles ( {{p_resp_sol}} )</td>
-            <td style="font-family: 'Roboto Condensed', sans-serif; font-size: 9px !important; padding-top: 5px; padding-bottom: 5px; font-weight: bold; border: 1px solid #555; text-align: center;">Pesos ( {{p_resp_peso}} )</td>
-            <td style="font-family: 'Roboto Condensed', sans-serif; font-size: 9px !important; padding-top: 5px; padding-bottom: 5px; font-weight: bold; border: 1px solid #555; text-align: center;">Dólares ( {{p_resp_dolar}} )</td>
+            <td style="background-color: #ffffff !important; font-family: 'Roboto Condensed', sans-serif; font-size: 9px !important; padding-top: 5px; padding-bottom: 5px; font-weight: bold; border: 1px solid #fff; text-align: center !important;"> Nombre: </td>
+            <td style="font-family: 'Roboto Condensed', sans-serif; font-size: 9px !important; padding-top: 5px; padding-bottom: 5px; font-weight: bold; border: 1px solid #fff; text-align: center;"> {{nombre_cliente}} </td>
           </tr>
           <tr>
-            <td style="background-color: #EEEEEE !important; font-family: 'Roboto Condensed', sans-serif; font-size: 9px !important; padding-top: 5px; padding-bottom: 5px; font-weight: bold; border: 1px solid #555; text-align: left; padding-left: 5px; text-align: center;">Validez de la oferta</td>
-            <td colspan="3" style="font-family: 'Roboto Condensed', sans-serif; font-size: 9px !important; padding-top: 5px; padding-bottom: 5px; font-weight: bold; border: 1px solid #555; text-align: center;">{{validez_oferta}} días</td>
+            <td style="background-color: #ffffff !important; font-family: 'Roboto Condensed', sans-serif; font-size: 9px !important; padding-top: 5px; padding-bottom: 5px; font-weight: bold; border: 1px solid #fff; text-align: left; padding-left: 5px; text-align: center;"> Dirección: </td>
+            <td colspan="3" style="font-family: 'Roboto Condensed', sans-serif; font-size: 9px !important; padding-top: 5px; padding-bottom: 5px; font-weight: bold; border: 1px solid #fff; text-align: center;">{{direccion}} </td>
           </tr>
           <tr>
-            <td style="background-color: #EEEEEE !important; font-family: 'Roboto Condensed', sans-serif; font-size: 9px !important; padding-top: 5px; padding-bottom: 5px; font-weight: bold; border: 1px solid #555; text-align: left; padding-left: 5px; text-align: center;">IGV</td>
-            <td style="font-family: 'Roboto Condensed', sans-serif; font-size: 9px !important; padding-top: 5px; padding-bottom: 5px; font-weight: bold; border: 1px solid #555; text-align: center;">SI ( {{p_impuesto_si}} )</td>
-            <td colspan="2" style="font-family: 'Roboto Condensed', sans-serif; font-size: 9px !important; padding-top: 5px; padding-bottom: 5px; font-weight: bold; border: 1px solid #555; text-align: center;">NO ( {{p_impuesto_no}} )</td>
+            <td style="background-color: #ffffff !important; font-family: 'Roboto Condensed', sans-serif; font-size: 9px !important; padding-top: 5px; padding-bottom: 5px; font-weight: bold; border: 1px solid #fff; text-align: left; padding-left: 5px; text-align: center;"> RUT: </td>
+            <td style="font-family: 'Roboto Condensed', sans-serif; font-size: 9px !important; padding-top: 5px; padding-bottom: 5px; font-weight: bold; border: 1px solid #fff; text-align: center;">  {{ruc}} </td>
+          </tr>
+          <tr>
+            <td style="background-color: #ffffff !important; font-family: 'Roboto Condensed', sans-serif; font-size: 9px !important; padding-top: 5px; padding-bottom: 5px; font-weight: bold; border: 1px solid #fff; text-align: center !important;"> Teléfono / celular: </td>
+            <td style="font-family: 'Roboto Condensed', sans-serif; font-size: 9px !important; padding-top: 5px; padding-bottom: 5px; font-weight: bold; border: 1px solid #fff; text-align: center;"> {{telefono}} </td>
+          </tr>
+          <tr>
+            <td style="background-color: #ffffff !important; font-family: 'Roboto Condensed', sans-serif; font-size: 9px !important; padding-top: 5px; padding-bottom: 5px; font-weight: bold; border: 1px solid #fff; text-align: center !important;"> Email: </td>
+            <td style="font-family: 'Roboto Condensed', sans-serif; font-size: 9px !important; padding-top: 5px; padding-bottom: 5px; font-weight: bold; border: 1px solid #fff; text-align: center;"> ( {{email}} </td>
           </tr>
         </tbody>
         </table>
