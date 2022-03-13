@@ -495,6 +495,8 @@ const actualizarProducto = async(req, res = response) => {
     WHERE productoID = "${p_idd}"
     `;
 
+    return console.log(query);
+
     return new Promise((resolve, reject) => {
         consql.query(query, (err, rows, fields) => {
             if (err) {
