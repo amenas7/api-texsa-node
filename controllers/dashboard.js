@@ -27,7 +27,12 @@ const getDashboard = async(req, res) => {
         const tabla_uno = await consultar_tabla_uno(req, res, p_desde, p_hasta);
         const tabla_dos = await consultar_tabla_dos(req, res, p_desde, p_hasta);
         const tabla_tres = await consultar_tabla_tres(req, res, p_desde, p_hasta);
-        const tabla_cuatro = await consultar_tabla_cuatro(req, res, p_desde, p_hasta);
+
+
+        const tabla_cuatro_fila_uno = await consultar_tabla_cuatro_fila_uno(req, res, p_desde, p_hasta);
+        const tabla_cuatro_fila_dos = await consultar_tabla_cuatro_fila_dos(req, res, p_desde, p_hasta);
+        const tabla_cuatro_fila_tres = await consultar_tabla_cuatro_fila_tres(req, res, p_desde, p_hasta);
+
         const total_aceptadas = await consultar_tabla_cuatro_total_aceptadas(req, res, p_desde, p_hasta);
 
         return res.status(200).json({
@@ -36,7 +41,10 @@ const getDashboard = async(req, res) => {
                 { tabla_uno : tabla_uno },
                 { tabla_dos : tabla_dos },
                 { tabla_tres : tabla_tres },
-                { tabla_cuatro : tabla_cuatro, total_aceptadas }
+                { tabla_cuatro_fila_sol : tabla_cuatro_fila_uno, 
+                  tabla_cuatro_fila_peso: tabla_cuatro_fila_dos,
+                  tabla_cuatro_fila_dolar: tabla_cuatro_fila_tres,                    
+                  total_aceptadas }
             ]
             ,
             //totalRegistros,
@@ -140,19 +148,11 @@ function consultar_tabla_tres(req, res, p_desde, p_hasta) {
     });
 }
 
-function consultar_tabla_cuatro(req, res, p_desde, p_hasta) {
+function consultar_tabla_cuatro_fila_uno(req, res, p_desde, p_hasta) {
     const query = `
-    (select IFNULL(sum(cotizacion),0) cotizacion, IFNULL(sum(abono),0) abono, IFNULL(sum(restante),0) restante
+    select IFNULL(sum(cotizacion),0) cotizacion, IFNULL(sum(abono),0) abono, IFNULL(sum(restante),0) restante
     from coti where estado = 'Aceptado' AND tipo_moneda = 'sol' AND date_format(fecha_reg, "%Y-%m-%d") BETWEEN "${p_desde}" 
-    AND "${p_hasta}")
-    UNION
-    (select IFNULL(sum(cotizacion),0) cotizacion, IFNULL(sum(abono),0) abono, IFNULL(sum(restante),0) restante
-    from coti where estado = 'Aceptado' AND tipo_moneda = 'peso' AND date_format(fecha_reg, "%Y-%m-%d") BETWEEN "${p_desde}" 
-    AND "${p_hasta}")
-    UNION
-    (select IFNULL(sum(cotizacion),0) cotizacion, IFNULL(sum(abono),0) abono, IFNULL(sum(restante),0) restante
-    from coti where estado = 'Aceptado' AND tipo_moneda = 'dolar' AND date_format(fecha_reg, "%Y-%m-%d") BETWEEN "${p_desde}" 
-    AND "${p_hasta}");`;
+    AND "${p_hasta}" ;`;
 
     return new Promise((resolve, reject) => {
         consql.query(query, (err, rows, fields) => {
@@ -163,6 +163,62 @@ function consultar_tabla_cuatro(req, res, p_desde, p_hasta) {
         });
     });
 }
+
+function consultar_tabla_cuatro_fila_dos(req, res, p_desde, p_hasta) {
+    const query = `
+    select IFNULL(sum(cotizacion),0) cotizacion, IFNULL(sum(abono),0) abono, IFNULL(sum(restante),0) restante
+     from coti where estado = 'Aceptado' AND tipo_moneda = 'peso' AND date_format(fecha_reg, "%Y-%m-%d") BETWEEN "${p_desde}" 
+     AND "${p_hasta}" ;`;
+
+    return new Promise((resolve, reject) => {
+        consql.query(query, (err, rows, fields) => {
+            if (err) {
+                return reject(err);
+            }
+            resolve(rows);
+        });
+    });
+}
+
+function consultar_tabla_cuatro_fila_tres(req, res, p_desde, p_hasta) {
+    const query = `
+    select IFNULL(sum(cotizacion),0) cotizacion, IFNULL(sum(abono),0) abono, IFNULL(sum(restante),0) restante
+     from coti where estado = 'Aceptado' AND tipo_moneda = 'dolar' AND date_format(fecha_reg, "%Y-%m-%d") BETWEEN "${p_desde}" 
+     AND "${p_hasta}" ;`;
+
+    return new Promise((resolve, reject) => {
+        consql.query(query, (err, rows, fields) => {
+            if (err) {
+                return reject(err);
+            }
+            resolve(rows);
+        });
+    });
+}
+
+// function consultar_tabla_cuatro(req, res, p_desde, p_hasta) {
+//     const query = `
+//     (select IFNULL(sum(cotizacion),0) cotizacion, IFNULL(sum(abono),0) abono, IFNULL(sum(restante),0) restante
+//     from coti where estado = 'Aceptado' AND tipo_moneda = 'sol' AND date_format(fecha_reg, "%Y-%m-%d") BETWEEN "${p_desde}" 
+//     AND "${p_hasta}")
+//     UNION
+//     (select IFNULL(sum(cotizacion),0) cotizacion, IFNULL(sum(abono),0) abono, IFNULL(sum(restante),0) restante
+//     from coti where estado = 'Aceptado' AND tipo_moneda = 'peso' AND date_format(fecha_reg, "%Y-%m-%d") BETWEEN "${p_desde}" 
+//     AND "${p_hasta}")
+//     UNION
+//     (select IFNULL(sum(cotizacion),0) cotizacion, IFNULL(sum(abono),0) abono, IFNULL(sum(restante),0) restante
+//     from coti where estado = 'Aceptado' AND tipo_moneda = 'dolar' AND date_format(fecha_reg, "%Y-%m-%d") BETWEEN "${p_desde}" 
+//     AND "${p_hasta}");`;
+
+//     return new Promise((resolve, reject) => {
+//         consql.query(query, (err, rows, fields) => {
+//             if (err) {
+//                 return reject(err);
+//             }
+//             resolve(rows);
+//         });
+//     });
+// }
 
 function consultar_tabla_cuatro_total_aceptadas(req, res, p_desde, p_hasta) {
     const query = `
