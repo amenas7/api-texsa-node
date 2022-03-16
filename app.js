@@ -75,6 +75,7 @@ app.use('/api/coti', require('./routes/coti') );
 app.use('/api/dashboard', require('./routes/dashboard') );
 app.use('/api/reportepdf', require('./routes/reportepdf') );
 app.use('/api/reporteotropdf', require('./routes/reporteotropdf') );
+app.use('/api/tallas', require('./routes/tallas') );
 
 app.use('/api/email', require('./routes/email') );
 // app.use('/api/usuarios', require('./routes/usuarios') );
