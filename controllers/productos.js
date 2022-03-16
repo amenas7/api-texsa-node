@@ -210,8 +210,8 @@ function consultar_total_productos(req, res, p_deporte, p_talla, p_tela, p_sexo,
         query = query + cuarta_cond;
     }
     if ( p_comodin != '' ) {
-        var quinta_cond = ` AND productoID LIKE '%${p_comodin}%' OR modelo_producto LIKE '%${p_comodin}%' 
-        OR marca_producto LIKE '%${p_comodin}%' OR codigo_producto LIKE '%${p_comodin}%' ` ;
+        var quinta_cond = ` AND prod.productoID LIKE '%${p_comodin}%' OR prod.modelo_producto LIKE '%${p_comodin}%' 
+        OR prod.marca_producto LIKE '%${p_comodin}%' OR prod.codigo_producto LIKE '%${p_comodin}%' OR prod.costo_producto LIKE '%${p_comodin}%' ` ;
         query = query + quinta_cond;
     }
          var final = ` ORDER BY prod.productoID DESC `;
@@ -266,8 +266,8 @@ function consultar_total_productos_paginados(req, res, page, limit, p_deporte, p
         query = query + cuarta_cond;
     }
     if ( p_comodin != '' ) {
-        var quinta_cond = ` AND productoID LIKE '%${p_comodin}%' OR modelo_producto LIKE '%${p_comodin}%' 
-        OR marca_producto LIKE '%${p_comodin}%' OR codigo_producto LIKE '%${p_comodin}%' ` ;
+        var quinta_cond = ` AND prod.productoID LIKE '%${p_comodin}%' OR prod.modelo_producto LIKE '%${p_comodin}%' 
+        OR prod.marca_producto LIKE '%${p_comodin}%' OR prod.codigo_producto LIKE '%${p_comodin}%' OR prod.costo_producto LIKE '%${p_comodin}%' ` ;
         query = query + quinta_cond;
     }
 
