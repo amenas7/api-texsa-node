@@ -44,6 +44,7 @@ const duplicarProducto = async(req, res = response) => {
             const p_descripcion = req.body.descripcion;
 
             const p_imagen_final = imagen_anterior;
+            console.log(p_consultar_datos_productoID);
             console.log(p_imagen_final);
 
             const reg = await registrar_producto( req, res, p_deporteID, p_telaID, p_sexo_producto, 
