@@ -63,7 +63,7 @@ const duplicarProducto = async(req, res = response) => {
             // Delete the file like normal
             // if ( fs.existsSync(p_foto) ) {
             //     fs.unlinkSync(p_foto);
-            // }
+            // } 
 
             return res.status(200).json({
                 ok: true,
