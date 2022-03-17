@@ -167,6 +167,44 @@ function consultar_datos_productoID(req, res, id) {
     });
 }
 
+function registrar_producto(req, res, p_deporteID, p_telaID, p_sexo_producto, 
+    p_modelo_producto, p_talla_productoID, p_marca_producto, p_costo_producto, p_codigo_producto,
+    p_descripcion ) {
+    const query = `insert into producto ( deporteID, telaID, sexo_producto, modelo_producto, talla_productoID, 
+        marca_producto, costo_producto, codigo_producto, descripcion ) 
+    VALUES ( "${p_deporteID}", "${p_telaID}", "${p_sexo_producto}", "${p_modelo_producto}", 
+    "${p_talla_productoID}", "${p_marca_producto}", "${p_costo_producto}", "${p_codigo_producto}", "${p_descripcion}" )  `;
+    return new Promise((resolve, reject) => {
+        consql.query(query, (err, rows, fields) => {
+            if (err) {
+                // consql.rollback(()=>{
+                //     return reject(err);
+                // });
+                return reject(err);
+            }
+            resolve(rows);
+        });
+    });
+}
+
+function registrar_foto_producto(req, res, idproducto_subido, p_imagen64) {
+    const query = `
+    insert into archivo ( productoID, fecha_reg, registradoPorID, base ) values 
+    ( "${idproducto_subido}", now(), "${req.uid}", "${p_imagen64}" ) `;
+
+    return new Promise((resolve, reject) => {
+        consql.query(query, (err, rows, fields) => {
+            if (err) {
+                // consql.rollback(()=>{
+                //     return reject(err);
+                // });
+                return reject(err);
+            }
+            resolve(rows);
+        });
+    });
+}
+
 
 module.exports = {
     duplicarProducto
