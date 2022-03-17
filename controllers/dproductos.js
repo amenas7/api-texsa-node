@@ -31,46 +31,47 @@ const duplicarProducto = async(req, res = response) => {
         const imagen_anterior = p_consultar_datos_productoID.imagen64;
         // data:////
         if ( req.file.originalname == 'imageFileName.png' ) {
-            //console.log("mantener imagen");
+            console.log("manteneniendo imagen del duplicado");
 
-            const p_deporteID = req.body.deporteID;
-            const p_telaID = req.body.telaID;
-            const p_sexo_producto = req.body.sexo_producto;
-            const p_modelo_producto = req.body.modelo_producto;
-            const p_talla_productoID = req.body.talla_productoID;
-            const p_marca_producto = req.body.marca_producto;
-            const p_costo_producto = req.body.costo_producto;
-            const p_codigo_producto = req.body.codigo_producto;
-            const p_descripcion = req.body.descripcion;
+            // const p_deporteID = req.body.deporteID;
+            // const p_telaID = req.body.telaID;
+            // const p_sexo_producto = req.body.sexo_producto;
+            // const p_modelo_producto = req.body.modelo_producto;
+            // const p_talla_productoID = req.body.talla_productoID;
+            // const p_marca_producto = req.body.marca_producto;
+            // const p_costo_producto = req.body.costo_producto;
+            // const p_codigo_producto = req.body.codigo_producto;
+            // const p_descripcion = req.body.descripcion;
 
-            let arreglo = {
-                idd: id,
-                deporteID : p_deporteID,
-                telaID : p_telaID,
-                sexo_producto : p_sexo_producto,
-                modelo_producto : p_modelo_producto,
-                talla_productoID : p_talla_productoID,
-                marca_producto : p_marca_producto,
-                costo_producto : p_costo_producto,
-                codigo_producto : p_codigo_producto,
-                descripcion : p_descripcion
-            }
+            // let arreglo = {
+            //     idd: id,
+            //     deporteID : p_deporteID,
+            //     telaID : p_telaID,
+            //     sexo_producto : p_sexo_producto,
+            //     modelo_producto : p_modelo_producto,
+            //     talla_productoID : p_talla_productoID,
+            //     marca_producto : p_marca_producto,
+            //     costo_producto : p_costo_producto,
+            //     codigo_producto : p_codigo_producto,
+            //     descripcion : p_descripcion
+            // }
 
-            const p_axion_actualizar_producto = await axion_actualizar_producto(req, res, arreglo);
+            // const p_axion_actualizar_producto = await axion_actualizar_producto(req, res, arreglo);
 
-            if ( p_axion_actualizar_producto.affectedRows < 1 ) {
-                return res.status(400).json({
-                    ok: false,
-                    mensaje: 'No se modificó los datos del producto'
-                });
-            }
+            // if ( p_axion_actualizar_producto.affectedRows < 1 ) {
+            //     return res.status(400).json({
+            //         ok: false,
+            //         mensaje: 'No se modificó los datos del producto'
+            //     });
+            // }
 
-            return res.status(200).json({
-                ok: true,
-                mensaje: "Producto modificado"
-            });
+            // return res.status(200).json({
+            //     ok: true,
+            //     mensaje: "Producto modificado"
+            // });
         }
         else{
+            console.log("imagen nueva");
             const p_deporteID = req.body.deporteID;
             const p_telaID = req.body.telaID;
             const p_sexo_producto = req.body.sexo_producto;
