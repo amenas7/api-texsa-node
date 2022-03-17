@@ -61,9 +61,9 @@ const duplicarProducto = async(req, res = response) => {
             await registrar_foto_producto( req, res, idproducto_subido, p_imagen_final );
 
             // Delete the file like normal
-            if ( fs.existsSync(p_foto) ) {
-                fs.unlinkSync(p_foto);
-            }
+            // if ( fs.existsSync(p_foto) ) {
+            //     fs.unlinkSync(p_foto);
+            // }
 
             return res.status(200).json({
                 ok: true,
