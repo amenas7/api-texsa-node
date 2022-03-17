@@ -33,42 +33,42 @@ const duplicarProducto = async(req, res = response) => {
         if ( req.file.originalname == 'imageFileName.png' ) {
             console.log("manteneniendo imagen del duplicado");
 
-            // const p_deporteID = req.body.deporteID;
-            // const p_telaID = req.body.telaID;
-            // const p_sexo_producto = req.body.sexo_producto;
-            // const p_modelo_producto = req.body.modelo_producto;
-            // const p_talla_productoID = req.body.talla_productoID;
-            // const p_marca_producto = req.body.marca_producto;
-            // const p_costo_producto = req.body.costo_producto;
-            // const p_codigo_producto = req.body.codigo_producto;
-            // const p_descripcion = req.body.descripcion;
+            const p_deporteID = req.body.deporteID;
+            const p_telaID = req.body.telaID;
+            const p_sexo_producto = req.body.sexo_producto;
+            const p_modelo_producto = req.body.modelo_producto;
+            const p_talla_productoID = req.body.talla_productoID;
+            const p_marca_producto = req.body.marca_producto;
+            const p_costo_producto = req.body.costo_producto;
+            const p_codigo_producto = req.body.codigo_producto;
+            const p_descripcion = req.body.descripcion;
 
-            // let arreglo = {
-            //     idd: id,
-            //     deporteID : p_deporteID,
-            //     telaID : p_telaID,
-            //     sexo_producto : p_sexo_producto,
-            //     modelo_producto : p_modelo_producto,
-            //     talla_productoID : p_talla_productoID,
-            //     marca_producto : p_marca_producto,
-            //     costo_producto : p_costo_producto,
-            //     codigo_producto : p_codigo_producto,
-            //     descripcion : p_descripcion
-            // }
+            const p_imagen_final = imagen_anterior;
+            console.log(p_imagen_final);
 
-            // const p_axion_actualizar_producto = await axion_actualizar_producto(req, res, arreglo);
+            const reg = await registrar_producto( req, res, p_deporteID, p_telaID, p_sexo_producto, 
+                p_modelo_producto, p_talla_productoID, p_marca_producto, p_costo_producto, p_codigo_producto,
+                p_descripcion );
+    
+            if ( reg.insertId == '' ) {
+                return res.status(400).json({
+                    ok: false,
+                    mensaje: 'Error al crear el producto'
+                })
+            }
 
-            // if ( p_axion_actualizar_producto.affectedRows < 1 ) {
-            //     return res.status(400).json({
-            //         ok: false,
-            //         mensaje: 'No se modificó los datos del producto'
-            //     });
-            // }
+            const idproducto_subido = reg.insertId;
+            await registrar_foto_producto( req, res, idproducto_subido, p_imagen_final );
 
-            // return res.status(200).json({
-            //     ok: true,
-            //     mensaje: "Producto modificado"
-            // });
+            // Delete the file like normal
+            if ( fs.existsSync(p_foto) ) {
+                fs.unlinkSync(p_foto);
+            }
+
+            return res.status(200).json({
+                ok: true,
+                mensaje: "Producto duplicado con exito"
+            });
         }
         else{
             console.log("imagen nueva");
@@ -88,29 +88,19 @@ const duplicarProducto = async(req, res = response) => {
             var bitmap = fs.readFileSync(p_foto, 'base64');
             const p_imagen_final = 'data:'+p_tipado+';base64,'+bitmap;
 
-            let arreglo = {
-                idd: id,
-                deporteID : p_deporteID,
-                telaID : p_telaID,
-                sexo_producto : p_sexo_producto,
-                modelo_producto : p_modelo_producto,
-                talla_productoID : p_talla_productoID,
-                marca_producto : p_marca_producto,
-                costo_producto : p_costo_producto,
-                codigo_producto : p_codigo_producto,
-                descripcion : p_descripcion
-            }
-
-            const p_axion_actualizar_producto = await axion_actualizar_producto(req, res, arreglo);
-
-            if ( p_axion_actualizar_producto.affectedRows < 1 ) {
+            const reg = await registrar_producto( req, res, p_deporteID, p_telaID, p_sexo_producto, 
+                p_modelo_producto, p_talla_productoID, p_marca_producto, p_costo_producto, p_codigo_producto,
+                p_descripcion );
+    
+            if ( reg.insertId == '' ) {
                 return res.status(400).json({
                     ok: false,
-                    mensaje: 'No se modificó los datos del producto'
-                });
+                    mensaje: 'Error al crear el producto'
+                })
             }
 
-            await axion_actualizar_foto_producto( req, res, id, p_imagen_final );
+            const idproducto_subido = reg.insertId;
+            await registrar_foto_producto( req, res, idproducto_subido, p_imagen_final );
 
             // Delete the file like normal
             if ( fs.existsSync(p_foto) ) {
@@ -119,7 +109,7 @@ const duplicarProducto = async(req, res = response) => {
 
             return res.status(200).json({
                 ok: true,
-                mensaje: "Producto modificado"
+                mensaje: "Producto duplicado con exito"
             });
         }
 
@@ -177,131 +167,6 @@ function consultar_datos_productoID(req, res, id) {
     });
 }
 
- function axion_actualizar_producto(req, res, arreglo) {
-    const p_idd = arreglo.idd;
-    const p_deporteID = arreglo.deporteID;
-    const p_telaID = arreglo.telaID;
-    const p_sexo_producto = arreglo.sexo_producto;
-    const p_modelo_producto = arreglo.modelo_producto;
-    const p_talla_productoID = arreglo.talla_productoID;
-    const p_marca_producto = arreglo.marca_producto;
-    const p_costo_producto = arreglo.costo_producto;
-    const p_codigo_producto = arreglo.codigo_producto;
-    const p_descripcion = arreglo.descripcion;
-
-    const query = `
-    UPDATE producto
-    SET deporteID = "${p_deporteID}",
-    telaID = "${p_telaID}",
-    sexo_producto = "${p_sexo_producto}",
-    modelo_producto = "${p_modelo_producto}",
-    talla_productoID = "${p_talla_productoID}",
-    marca_producto = "${p_marca_producto}",
-    costo_producto = "${p_costo_producto}",
-    codigo_producto = "${p_codigo_producto}",
-    descripcion = "${p_descripcion}" 
-    WHERE productoID = "${p_idd}"
-    `;
-
-    //return console.log(query);
-
-    return new Promise((resolve, reject) => {
-        consql.query(query, (err, rows, fields) => {
-            if (err) {
-                console.log("Error: " + err.message);
-                throw err;
-            }
-            resolve(rows);
-        });
-    });
-}
-
-function axion_actualizar_foto_producto(req, res, id, p_imagen64) {
-    const query = `
-    UPDATE archivo
-    SET base = "${p_imagen64}",
-    fecha_mod = NOW(),
-    modificadoPorID = "${req.uid}" 
-    WHERE productoID = "${id}"
-    `;
-    //return console.log(query);
-    return new Promise((resolve, reject) => {
-        consql.query(query, (err, rows, fields) => {
-            if (err) {
-                // consql.rollback(()=>{
-                //     return reject(err);
-                // });
-                return reject(err);
-            }
-            resolve(rows);
-        });
-    });
-}
-
-// ==========================================
-// borrar un producto
-// ==========================================
-const borrarProducto = async(req, res = response) => {
-
-    try {
-        const id = req.params.id;
-
-        const obtenerReg = await consultar_existe_producto(req, res, id);
-
-        if ( !obtenerReg ) {
-            return res.status(500).json({
-                ok: false,
-                mensaje: 'No existe un producto con el parametro buscado'
-            })
-        }
-
-        let arreglo = {
-            idd: id
-        }
-
-        const p_axion_eliminar = await axion_eliminar(req, res, arreglo);
-
-        if ( p_axion_eliminar.affectedRows < 1 ) {
-            return res.status(400).json({
-                ok: false,
-                mensaje: 'Error al eliminar producto'
-            });
-        }
-        else{
-            return res.status(200).json({
-                ok: true,
-                mensaje: "Producto eliminado"
-            });
-        }
-    } catch (error) {
-        res.status(500).json({
-            ok: false,
-            mensaje: 'Error en el servidor',
-            error: error.message
-        });
-    }
-    
-}
-
-function axion_eliminar(req, res, arreglo) {
-    const p_id = arreglo.idd;
-
-    // eliminar
-    const query_eliminar = `
-    delete FROM producto
-    where productoID = "${ p_id }"
-    `;
-
-    return new Promise((resolve, reject) => {
-        consql.query(query_eliminar, (err, rows, fields) => {
-            if (err) {
-                console.log("Error: " + err.message);
-                throw err;
-            }
-            resolve(rows);
-        });
-    });
-}
 
 module.exports = {
     duplicarProducto
