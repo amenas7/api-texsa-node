@@ -28,7 +28,7 @@ const duplicarProducto = async(req, res = response) => {
 
         const p_consultar_datos_productoID = await consultar_datos_productoID(req, res, id);
 
-        const imagen_anterior = p_consultar_datos_productoID.imagen64;
+        const imagen_anterior = p_consultar_datos_productoID[0]['imagen64'];
         // data:////
         if ( req.file.originalname == 'imageFileName.png' ) {
             console.log("manteneniendo imagen del duplicado");
@@ -44,7 +44,7 @@ const duplicarProducto = async(req, res = response) => {
             const p_descripcion = req.body.descripcion;
 
             const p_imagen_final = imagen_anterior;
-            console.log(p_consultar_datos_productoID);
+            //console.log(p_consultar_datos_productoID);
             console.log(p_imagen_final);
 
             const reg = await registrar_producto( req, res, p_deporteID, p_telaID, p_sexo_producto, 
