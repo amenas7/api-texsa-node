@@ -33,7 +33,7 @@ const duplicarProducto = async(req, res = response) => {
         if ( req.file.originalname == 'imageFileName.png' ) {
             console.log("manteneniendo imagen del duplicado");
             console.log(imagen_anterior);
-            console.log(p_consultar_datos_productoID.imagen64);
+            console.log(p_consultar_datos_productoID);
             // const p_deporteID = req.body.deporteID;
             // const p_telaID = req.body.telaID;
             // const p_sexo_producto = req.body.sexo_producto;
@@ -159,7 +159,7 @@ function consultar_datos_productoID(req, res, id) {
             if (err) {
                 return reject(err);
             }
-            resolve(rows);
+            resolve(rows[0]['imagen64']);
         });
     });
 }
