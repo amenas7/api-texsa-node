@@ -28,48 +28,44 @@ const duplicarProducto = async(req, res = response) => {
 
         const p_consultar_datos_productoID = await consultar_datos_productoID(req, res, id);
 
-        const imagen_anterior = p_consultar_datos_productoID[0]['imagen64'];
+        const imagen_anterior = p_consultar_datos_productoID['imagen64'];
         // data:////
         if ( req.file.originalname == 'imageFileName.png' ) {
             console.log("manteneniendo imagen del duplicado");
+            console.log(imagen_anterior);
+            console.log(p_consultar_datos_productoID.imagen64);
+            // const p_deporteID = req.body.deporteID;
+            // const p_telaID = req.body.telaID;
+            // const p_sexo_producto = req.body.sexo_producto;
+            // const p_modelo_producto = req.body.modelo_producto;
+            // const p_talla_productoID = req.body.talla_productoID;
+            // const p_marca_producto = req.body.marca_producto;
+            // const p_costo_producto = req.body.costo_producto;
+            // const p_codigo_producto = req.body.codigo_producto;
+            // const p_descripcion = req.body.descripcion;
 
-            const p_deporteID = req.body.deporteID;
-            const p_telaID = req.body.telaID;
-            const p_sexo_producto = req.body.sexo_producto;
-            const p_modelo_producto = req.body.modelo_producto;
-            const p_talla_productoID = req.body.talla_productoID;
-            const p_marca_producto = req.body.marca_producto;
-            const p_costo_producto = req.body.costo_producto;
-            const p_codigo_producto = req.body.codigo_producto;
-            const p_descripcion = req.body.descripcion;
+            // const p_imagen_final = imagen_anterior;
+            // //console.log(p_consultar_datos_productoID);
+            // console.log(p_imagen_final);
 
-            const p_imagen_final = imagen_anterior;
-            //console.log(p_consultar_datos_productoID);
-            console.log(p_imagen_final);
-
-            const reg = await registrar_producto( req, res, p_deporteID, p_telaID, p_sexo_producto, 
-                p_modelo_producto, p_talla_productoID, p_marca_producto, p_costo_producto, p_codigo_producto,
-                p_descripcion );
+            // const reg = await registrar_producto( req, res, p_deporteID, p_telaID, p_sexo_producto, 
+            //     p_modelo_producto, p_talla_productoID, p_marca_producto, p_costo_producto, p_codigo_producto,
+            //     p_descripcion );
     
-            if ( reg.insertId == '' ) {
-                return res.status(400).json({
-                    ok: false,
-                    mensaje: 'Error al crear el producto'
-                })
-            }
+            // if ( reg.insertId == '' ) {
+            //     return res.status(400).json({
+            //         ok: false,
+            //         mensaje: 'Error al crear el producto'
+            //     })
+            // }
 
-            const idproducto_subido = reg.insertId;
-            await registrar_foto_producto( req, res, idproducto_subido, p_imagen_final );
+            // const idproducto_subido = reg.insertId;
+            // await registrar_foto_producto( req, res, idproducto_subido, p_imagen_final );
 
-            // Delete the file like normal
-            // if ( fs.existsSync(p_foto) ) {
-            //     fs.unlinkSync(p_foto);
-            // } 
-
-            return res.status(200).json({
-                ok: true,
-                mensaje: "Producto duplicado con exito"
-            });
+            // return res.status(200).json({
+            //     ok: true,
+            //     mensaje: "Producto duplicado con exito"
+            // });
         }
         else{
             console.log("imagen nueva");
