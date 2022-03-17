@@ -253,7 +253,7 @@ function consultar_cabecera(req, res, id) {
 function consultar_detalle_productos(req, res, id) {
     const query = `select
     de.productoID, de.cantidad, de.pu_sol, de.pu_peso, de.pu_dolar, de.tipo_envio, de.ce_sol,
-    de.ce_peso, de.ce_dolar, de.sub_total_pu_sol, de.sub_total_pu_peso, de.sub_total_pu_dolar, arc.base as base64,
+    de.ce_peso, de.ce_dolar, de.sub_total_pu_sol, de.sub_total_pu_peso, de.sub_total_pu_dolar, arc.base as imagen64,
 		concat(prod.descripcion, ', deporte: ', dep.nombre_deporte, ', tela: ',tel.nombre_tela, 
 		', talla: ',ta.descripcion_talla) as descripcion, prod.marca_producto, prod.modelo_producto
     from coti_detalle de
