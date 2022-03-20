@@ -118,6 +118,7 @@ function consultar_datos_productos(req, res) {
     const query = `
     SELECT *
         from producto
+        where estado = '1' 
         ORDER BY productoID DESC `;
 
     return new Promise((resolve, reject) => {
@@ -189,7 +190,7 @@ function consultar_total_productos(req, res, p_deporte, p_talla, p_tela, p_sexo,
     on ta.tallaID = prod.talla_productoID
     inner join archivo arc
     on arc.productoID = prod.productoID
-    where 1=1 
+    where prod.estado = '1'  
     `;
 
     //return console.log(p_ruc);
@@ -245,7 +246,7 @@ function consultar_total_productos_paginados(req, res, page, limit, p_deporte, p
     on ta.tallaID = prod.talla_productoID
     inner join archivo arc
     on arc.productoID = prod.productoID
-    where 1=1 
+    where prod.estado = '1'  
     `;
 
     //return console.log(p_ruc);
@@ -266,8 +267,8 @@ function consultar_total_productos_paginados(req, res, page, limit, p_deporte, p
         query = query + cuarta_cond;
     }
     if ( p_comodin != '' ) {
-        var quinta_cond = ` AND prod.productoID LIKE '%${p_comodin}%' OR prod.modelo_producto LIKE '%${p_comodin}%' 
-        OR prod.marca_producto LIKE '%${p_comodin}%' OR prod.codigo_producto LIKE '%${p_comodin}%' OR prod.costo_producto LIKE '%${p_comodin}%' ` ;
+        var quinta_cond = ` AND prod.codigo_producto LIKE '%${p_comodin}%' OR prod.modelo_producto LIKE '%${p_comodin}%' 
+        OR prod.marca_producto LIKE '%${p_comodin}%' OR prod.costo_producto LIKE '%${p_comodin}%' ` ;
         query = query + quinta_cond;
     }
 
@@ -622,7 +623,8 @@ function axion_eliminar(req, res, arreglo) {
 
     // eliminar
     const query_eliminar = `
-    delete FROM producto
+    UPDATE producto
+    set estado = '0'
     where productoID = "${ p_id }"
     `;
 

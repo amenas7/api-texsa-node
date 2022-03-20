@@ -153,12 +153,10 @@ function consultar(req, res, reg) {
     SELECT 
     usuario.usuarioID, persona.numdoc ,concat( persona.apepat, ' ', persona.apemat, ', ', persona.nombres ) as nombre_total, 
     persona.apepat as apaterno, persona.apemat as amaterno, persona.nombres as solo_nombre, 
-    usuario.usuario, usuario.IDarea, area.nombre_area, usuario.IDrol, rol.descripcion as nombre_rol ,usuario.estado
+    usuario.usuario, usuario.IDarea, usuario.IDrol, rol.descripcion as nombre_rol ,usuario.estado
     from usuario
     inner join persona
     on persona.IDpersona = usuario.IDpersona
-    inner join area
-    on usuario.IDarea = area.IDarea
     inner join rol
     on usuario.IDrol = rol.IDrol
     where usuario.usuarioID = "${reg}" AND usuario.estado = 1  

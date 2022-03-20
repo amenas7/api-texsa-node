@@ -77,10 +77,9 @@ app.use('/api/reportepdf', require('./routes/reportepdf') );
 app.use('/api/reporteotropdf', require('./routes/reporteotropdf') );
 app.use('/api/tallas', require('./routes/tallas') );
 app.use('/api/dproductos', require('./routes/dproductos') );
+app.use('/api/usuarios', require('./routes/usuarios') );
 
 app.use('/api/email', require('./routes/email') );
-// app.use('/api/usuarios', require('./routes/usuarios') );
-
 // escuchar peticiones
 const port = process.env.PORT || 4000;
 app.listen(port, () => {

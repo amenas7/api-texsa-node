@@ -28,10 +28,10 @@ router.get('/:id',
 
 router.post('/', 
             [
-                check('nombres', 'El nombre es obligatorio').not().isEmpty(),
-                check('password', 'El password es obligatorio').not().isEmpty(),
-                check('usuario', 'El usuario es obligatorio').not().isEmpty(),
-                validarCampos,
+                //check('nombres', 'El nombre es obligatorio').not().isEmpty(),
+                //check('password', 'El password es obligatorio').not().isEmpty(),
+                //check('usuario', 'El usuario es obligatorio').not().isEmpty(),
+                //validarCampos,
             ],
             crearUsuario 
 );
