@@ -1817,19 +1817,32 @@ function consultar_existe_coti(req, res, id) {
 }
 
 function consultar_cabecera(req, res, id) {
+    // const query = `select 
+    // cot.cotiID, cot.codigo, cli.nombrecompleto, cli.direccion, cli.telefono, cli.ruc, cli.email,
+    // date_format(cot.fecha_reg, "%d-%m-%Y") as fecha_registro_coti, cot.fecha_reg as otra_fecha,
+    // cot.total_g_sol, cot.forma_pago, cot.validez_oferta, cot.tipo_impuesto, cot.total_g_peso,
+    // cot.total_g_dolar, cot.sub_total_g_sol, cot.sub_total_g_peso, cot.sub_total_g_dolar,
+    // cot.imp_g_sol, cot.imp_g_peso, cot.imp_g_dolar, cot.tipo_moneda, per.nombrecompleto
+    // from coti cot
+    // inner join cliente cli
+    // on cli.clienteID = cot.clienteID
+    // inner join usuario usu
+    // on usu.usuarioID = cot.registradoPorID
+    // inner join persona per
+    // on per.IDpersona = usu.IDpersona
     const query = `select 
     cot.cotiID, cot.codigo, cli.nombrecompleto, cli.direccion, cli.telefono, cli.ruc, cli.email,
     date_format(cot.fecha_reg, "%d-%m-%Y") as fecha_registro_coti, cot.fecha_reg as otra_fecha,
-    cot.total_g_sol, cot.forma_pago, cot.validez_oferta, cot.tipo_impuesto, cot.total_g_peso,
-    cot.total_g_dolar, cot.sub_total_g_sol, cot.sub_total_g_peso, cot.sub_total_g_dolar,
-    cot.imp_g_sol, cot.imp_g_peso, cot.imp_g_dolar, cot.tipo_moneda, per.nombrecompleto
+    format(cot.total_g_sol,2,'en_US') total_g_sol, cot.forma_pago, cot.validez_oferta, cot.tipo_impuesto, format(cot.total_g_peso,0,'de_DE') total_g_peso,
+    format(cot.total_g_dolar,2,'en_US') total_g_dolar, format(cot.sub_total_g_sol,2,'en_US') sub_total_g_sol, format(cot.sub_total_g_peso,0,'de_DE') sub_total_g_peso, format(cot.sub_total_g_dolar,2,'en_US') sub_total_g_dolar,
+    format(cot.imp_g_sol,2,'en_US') imp_g_sol, format(cot.imp_g_peso,0,'de_DE') imp_g_peso, format(cot.imp_g_dolar ,2,'en_US') imp_g_dolar, cot.tipo_moneda, per.nombrecompleto
     from coti cot
     inner join cliente cli
     on cli.clienteID = cot.clienteID
     inner join usuario usu
     on usu.usuarioID = cot.registradoPorID
     inner join persona per
-    on per.IDpersona = usu.IDpersona
+    on per.IDpersona = usu.IDpersona 
     where cot.cotiID = "${id}"  `;
 
     //return console.log(query);
@@ -1844,13 +1857,32 @@ function consultar_cabecera(req, res, id) {
 }
 
 function consultar_detalle_productos(req, res, id) {
+    // const query = `select
+    // de.cotiID,
+    // arc.nombre_archivo_server as imagen, de.cantidad, concat(pro.descripcion, ', deporte: ', dep.nombre_deporte,
+    // ', tela: ',tel.nombre_tela, ', talla: ',ta.descripcion_talla) as descripcion, pro.marca_producto, 
+    // pro.modelo_producto, (de.pu_sol + de.ce_sol) as pu_sol, (de.pu_peso + de.ce_peso) as pu_peso, 
+    // (de.pu_dolar + de.ce_dolar) pu_dolar, de.sub_total_pu_sol, de.sub_total_pu_peso, 
+    // de.sub_total_pu_dolar,arc.base, arc.nombre_archivo_original, arc.nombre_archivo_server
+    // from coti_detalle de
+    // inner join producto pro
+    // on pro.productoID = de.productoID
+    // inner join archivo arc
+    // on arc.productoID = pro.productoID
+    // inner join deporte dep
+    // on dep.deporteID = pro.deporteID
+    // inner join tela tel
+    // on tel.telaID = pro.telaID
+    // inner join talla ta
+    // on ta.tallaID = pro.talla_productoID
+    // where de.cotiID = "${id}"  `;
     const query = `select
     de.cotiID,
     arc.nombre_archivo_server as imagen, de.cantidad, concat(pro.descripcion, ', deporte: ', dep.nombre_deporte,
     ', tela: ',tel.nombre_tela, ', talla: ',ta.descripcion_talla) as descripcion, pro.marca_producto, 
-    pro.modelo_producto, (de.pu_sol + de.ce_sol) as pu_sol, (de.pu_peso + de.ce_peso) as pu_peso, 
-    (de.pu_dolar + de.ce_dolar) pu_dolar, de.sub_total_pu_sol, de.sub_total_pu_peso, 
-    de.sub_total_pu_dolar,arc.base, arc.nombre_archivo_original, arc.nombre_archivo_server
+    pro.modelo_producto, format((de.pu_sol + de.ce_sol),2,'en_US') as pu_sol, format((de.pu_peso + de.ce_peso),0,'de_DE') pu_peso, 
+    format((de.pu_dolar + de.ce_dolar),2,'en_US') pu_dolar, format(de.sub_total_pu_sol,2,'en_US') sub_total_pu_sol, format(de.sub_total_pu_peso ,0,'de_DE') sub_total_pu_peso, 
+    format(de.sub_total_pu_dolar,2,'en_US') sub_total_pu_dolar,arc.base, arc.nombre_archivo_original, arc.nombre_archivo_server
     from coti_detalle de
     inner join producto pro
     on pro.productoID = de.productoID
