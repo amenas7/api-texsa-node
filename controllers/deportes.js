@@ -94,7 +94,7 @@ const getDeporteByID = async(req, res) => {
 function consultar_datos_deportes(req, res) {
     const query = `
     SELECT deporteID, nombre_deporte
-        from deporte
+        from deporte where estado_deporte = '1' 
         ORDER BY deporteID DESC `;
 
     return new Promise((resolve, reject) => {
@@ -140,7 +140,7 @@ function consultar_existe_deporte(req, res, id) {
 
 function consultar_total_deportes(req, res) {
     const query = `
-    select count(deporteID) as cantidad from deporte`;
+    select count(deporteID) as cantidad from deporte where estado_deporte = '1' `;
 
     return new Promise((resolve, reject) => {
         consql.query(query, (err, rows, fields) => {
@@ -154,7 +154,7 @@ function consultar_total_deportes(req, res) {
 
 function consultar_total_deportes_paginados(req, res, page, limit) {
     const query = `
-    SELECT * FROM deporte ORDER BY deporteID DESC LIMIT ${page}, ${limit}`;
+    SELECT * FROM deporte where estado_deporte = '1' ORDER BY deporteID DESC LIMIT ${page}, ${limit}`;
 
     return new Promise((resolve, reject) => {
         consql.query(query, (err, rows, fields) => {
@@ -333,7 +333,8 @@ function axion_eliminar(req, res, arreglo) {
 
     // eliminar
     const query_eliminar = `
-    delete FROM deporte
+    UPDATE deporte
+    SET estado_deporte = "0"
     where deporteID = "${ p_id }"
     `;
 

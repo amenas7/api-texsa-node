@@ -94,7 +94,7 @@ const getTelaByID = async(req, res) => {
 function consultar_datos_telas(req, res) {
     const query = `
     SELECT telaID, nombre_tela
-        from tela
+        from tela where estado_tela = '1' 
         ORDER BY telaID DESC `;
 
     return new Promise((resolve, reject) => {
@@ -140,7 +140,7 @@ function consultar_existe_tela(req, res, id) {
 
 function consultar_total_telas(req, res) {
     const query = `
-    select count(telaID) as cantidad from tela`;
+    select count(telaID) as cantidad from tela where estado_tela = '1' `;
 
     return new Promise((resolve, reject) => {
         consql.query(query, (err, rows, fields) => {
@@ -154,7 +154,7 @@ function consultar_total_telas(req, res) {
 
 function consultar_total_telas_paginados(req, res, page, limit) {
     const query = `
-    SELECT * FROM tela ORDER BY telaID DESC LIMIT ${page}, ${limit}`;
+    SELECT * FROM tela where estado_tela = '1' ORDER BY telaID DESC LIMIT ${page}, ${limit}`;
 
     return new Promise((resolve, reject) => {
         consql.query(query, (err, rows, fields) => {
@@ -333,7 +333,8 @@ function axion_eliminar(req, res, arreglo) {
 
     // eliminar
     const query_eliminar = `
-    delete FROM tela
+    UPDATE tela
+    SET estado_tela = "0"
     where telaID = "${ p_id }"
     `;
 
