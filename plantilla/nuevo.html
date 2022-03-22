@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS only -->
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="./style.css"> -->
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <title>Crear PDF con Node.js</title>
+    <style>
+        .label-input{
+          font-family: 'Poppins';
+          font-weight: 600;
+          font-size: 15px;
+          color: black;
+          text-align: left;
+          margin: auto 0px;
+          padding: 5px 0px;
+        }
+        .input{
+          font-family: 'Poppins';
+          font-weight: 500;
+          font-size: 14px;
+          color: #717171;
+          margin: auto 0px;
+          text-decoration: underline #717171;
+          text-align: left;
+          padding: 5px 0px;
+        }
+        .table-bordered{
+          border-color: black;
+        }
+        .table-bordered.light > thead{
+          border-color: #CBCBCB;
+          background-color: #707070 !important;
+          color: white;
+          font-family: 'Poppins';
+          margin: auto;
+          vertical-align: middle;
+          text-align: center;
+          font-size: 13px;
+        }
+        .table-bordered.light > tbody > tr > td{
+          border-color: #CBCBCB;
+          background-color: white !important;
+          color: #555555;
+          font-family: 'Poppins';
+          margin: auto;
+          padding: 20px 0px;
+          vertical-align: middle;
+          text-align: center;
+          font-size: 13px;
+        }
+        .table-bordered.light > tbody > tr > td.cell-id{
+          border-color: #CBCBCB;
+          background-color: #A4A4A4 !important;
+          color: white;
+          font-family: 'Poppins';
+          margin: auto;
+          padding: 20px 0px;
+          vertical-align: middle;
+          text-align: center;
+          font-size: 14px;
+        }
+        .table-bordered > tbody> tr > td{
+          border-color: black;
+          border-bottom-width: 1px !important;
+        }
+        .cell{
+          font-family: 'Poppins';
+          font-weight: 800;
+          font-size: 17px;
+          margin: auto;
+          vertical-align: middle;
+          text-align: center;
+        }
+        .cell-active{
+          font-family: 'Poppins';
+          font-weight: 600;
+          font-size: 16px;
+          margin: auto;
+          vertical-align: middle;
+          text-align: center;
+          background-color: #D0421C !important;
+          color: white;
+        }
+        .cell-code{
+          font-family: 'Poppins';
+          font-weight: 500;
+          font-size: 16px;
+          margin: auto;
+          vertical-align: middle;
+          text-align: center;
+        }
+        .div-dark{
+          border-color: #707070;
+          border-width: 0.5px;
+          border-style: solid;
+          background-color: #707070 !important;
+          color: white;
+          font-family: 'Poppins';
+          font-weight: 600; 
+          padding: 15px 0px;
+          vertical-align: middle;
+          text-align: center;
+          font-size: 13px;
+        }
+        .div-light{
+          border-color: red;
+          border-width: 0.5px;
+          border-style: solid;
+          background-color: white !important;
+          color: #707070;
+          font-family: 'Poppins';
+          font-weight: 600;
+          
+          padding: 15px 0px;
+          vertical-align: middle;
+          text-align: center;
+          font-size: 13px;
+        }
+
+        .label-cabecera{
+          font-size: 15px;
+          color: black;
+          font-weight: bold;
+          font-weight: bold;
+        }
+
+        .label-cabecera-texto{
+          font-family: 'Poppins';
+          font-size: 15px;
+          color: black;
+        }
+
+        .cell-gris{
+          font-family: 'Poppins';
+          font-weight: 600;
+          font-size: 16px;
+          margin: auto;
+          vertical-align: middle;
+          text-align: center;
+          background-color: #707070 !important;
+          color: white;
+        }
+    </style>
+<script async src='/cdn-cgi/bm/cv/669835187/api.js'></script><script async src='/cdn-cgi/bm/cv/669835187/api.js'></script></head>
+
+<body>
+  <!--div_cabecera-->
+  <div class="col-12 p-5 pb-3">
+    <table class="table table-bordered">
+      <tr>
+        <td rowspan="2">VUELA</td>
+        <td rowspan="2" class="cell">ORDEN DE COMPRA</td>
+        <td colspan="1" class="cell-active">CÓDIGO</td>
+      </tr>
+      <tr>
+        <td class="cell-code"> {{codigo}} </td>
+      </tr>
+    </table>
+  </div>
+
+  <table cellspacing="0" cellpadding="0" width="100%" style="margin-left: 50px;">
+    <tr>
+      <td id="td" width="60"> <span class="label-cabecera"> Proveedor: </span> <span class="label-cabecera-texto"> {{proveedor}} </span> </td>
+      <td id="td" width="60"> <span class="label-cabecera"> Área solicitante: </span> <span class="label-cabecera-texto"> {{nombre_area}} </span> </td>
+   </tr>
+   <tr>
+      <td id="td" width="60" style="margin-top: 5px;"> <span class="label-cabecera"> Facturar a: </span> <span> Cliente </span> </td>
+      <td id="td" width="60" style="margin-top: 5px;"> <span class="label-cabecera"> Fecha: </span> <span class="label-cabecera-texto"> {{fecha_registro_compra}} </span> </td>
+   </tr>
+   <tr>
+    <td id="td" width="60" style="margin-top: 5px;"> <span class="label-cabecera"> NIT: </span> <span class="label-cabecera-texto"> {{nit}} </span> </td>
+    <td id="td" width="60" style="margin-top: 5px;"> <span class="label-cabecera"> Forma de pago: </span> <span class="label-cabecera-texto"> {{forma_pago}} </span> </td>
+   </tr>
+   <tr>
+    <td id="td" width="60" style="margin-top: 5px;"> <span class="label-cabecera"> Descripción: </span> <span class="label-cabecera-texto"> {{descripcion}} </span> </td>
+    <td id="td" width="60" style="margin-top: 5px;"> <span class="label-cabecera"> Moneda: </span> <span class="label-cabecera-texto"> {{moneda}} </span> </td>
+   </tr>
+   <tr>
+    <td id="td" width="60" style="margin-top: 5px;"> <span class="label-cabecera"> Ticket: </span> <span class="label-cabecera-texto"> {{ticket}} </span> </td>
+    <td id="td" width="60" style="margin-top: 5px;"> <span class="label-cabecera"> Tiempo de entrega: </span> <span class="label-cabecera-texto"> {{tiempo_entrega}} </span> </td>
+   </tr>
+
+  </table>
+
+  <div class="col-12 p-5 pt-0 pb-3" style="margin-top: 10px;">
+    <table class="table table-bordered light">
+      <thead>
+        <tr>
+          <td rowspan="2">ITEM</td>
+          <td rowspan="2">SKU</td>
+          <td rowspan="2">CÓDIGO DE FÁBRICA</td>
+          <td rowspan="2" >MARCA</td>
+          <td rowspan="2">DESCRIPCIÓN</td>
+          <td colspan="4">PEDIDO</td>
+        </tr>
+        <tr>
+          <td>UNIDAD</td>
+          <td>CANTIDAD</td>
+          <td>PRECIO UNITARIO BS</td>
+          <td>PRECIO TOTAL BS</td>
+        </tr>
+      </thead>
+      <tbody>
+        {{tablaProductos}}
+      </tbody>
+    </table>
+  </div>
+
+  <!--div_precios-->
+  <!-- <table cellspacing="0" cellpadding="0" width="100%">
+    <tr>
+      <td colspan="4">
+          <a href="https://www.youtube.com/channel/UCSsg9NLCse2XQCIRgfmJu3Q" style="color:#000000">Больше информации о наших услугах</a>
+      </td>
+      <td></td>
+      <td colspan="4" style="background: #C31313; padding: 6px;"><b> SUB TOTAL: </b></td>
+      <td style="background: #d6d6d6; padding: 6px;">
+          <b> 240.0 </b>
+      </td>
+    </tr>
+  </table> -->
+  <div class="col-12 p-5 pb-1" style="margin-top: -40px;">
+    <table class="table table-bordered">
+      <tr>
+        <td rowspan="2" class="cell-gris"> SUB TOTAL:</td>
+        <td colspan="2" class="cell"> {{sub_total}} </td>
+        <td colspan="2" style="color: white; border-color: white"> dsdsdsdsdsdsdsdsdsds</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="col-12 p-5 pb-1" style="margin-top: -50px !important;">
+    <table class="table table-bordered">
+      <tr>
+        <td rowspan="2" class="cell-gris"> DESCUENTO:</td>
+        <td colspan="2" class="cell"> {{descuento}} </td>
+        <td colspan="2" style="color: white; border-color: white"> dsdsdsdsdsdsdsdsdsds</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="col-12 p-5 pb-1" style="margin-top: -50px !important;">
+    <table class="table table-bordered">
+      <tr>
+        <td rowspan="2" class="cell-gris"> TOTAL:</td>
+        <td colspan="2" class="cell"> {{total_compra}} </td>
+        <td colspan="2" style="color: white; border-color: white"> dsdsdsdsdsdsdsdsdsds</td>
+      </tr>
+    </table>
+  </div>
+
+  <!--div_solicitante-->
+  <div class="col-12 p-5 pt-0">
+    <table class="table table-bordered light">
+      <thead>
+        <tr>
+          <td>Solicitante</td>
+          <td>Administración</td>
+          <td>Conformidad de almacen</td>
+          <td>IMPORTANTE</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Leonardo Rafael Quispe Pacheco</td>
+          <td>Leonardo Rafael Quispe Pacheco</td>
+          <td>CONFORME</td>
+          <td>1. But i have explain But i have explain 
+            <br> 2 . But i have explain But i have explain 
+            <br> 3. But i have explain But i have explain</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+
+</body>
+
+</html>
