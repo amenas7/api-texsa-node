@@ -150,7 +150,7 @@ function consultar_tabla_tres(req, res, p_desde, p_hasta) {
 
 function consultar_tabla_cuatro_fila_uno(req, res, p_desde, p_hasta) {
     const query = `
-    select IFNULL(sum(cotizacion),0) cotizacion, IFNULL(sum(abono),0) abono, IFNULL(sum(restante),0) restante
+    select format(IFNULL(sum(cotizacion),0),2,'en_US') cotizacion, format(IFNULL(sum(abono),0),2,'en_US') abono, format(IFNULL(sum(restante),0),2,'en_US') restante
     from coti where estado = 'Aceptado' AND tipo_moneda = 'sol' AND date_format(fecha_reg, "%Y-%m-%d") BETWEEN "${p_desde}" 
     AND "${p_hasta}" ;`;
 
