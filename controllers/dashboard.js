@@ -107,11 +107,11 @@ function consultar_tabla_dos(req, res, p_desde, p_hasta) {
     select 
     (select count(cotiID) from coti where estado = 'Enviado' AND date_format(fecha_reg, "%Y-%m-%d") BETWEEN "${p_desde}" 
     AND "${p_hasta}") as nro_cotizaciones_todas, 
-    (select IFNULL(sum(total_g_sol),0) from coti where estado = 'Enviado' AND date_format(fecha_reg, "%Y-%m-%d") BETWEEN "${p_desde}" 
+    (select format(IFNULL(sum(total_g_sol),0),2,'en_US') total_g_sol from coti where estado = 'Enviado' AND date_format(fecha_reg, "%Y-%m-%d") BETWEEN "${p_desde}" 
     AND "${p_hasta}") as total_pen_todas, 
-    (select IFNULL(sum(total_g_peso),0) from coti where estado = 'Enviado' AND date_format(fecha_reg, "%Y-%m-%d") BETWEEN "${p_desde}" 
+    (select format(IFNULL(sum(total_g_peso),0),0,'de_DE') total_g_peso from coti where estado = 'Enviado' AND date_format(fecha_reg, "%Y-%m-%d") BETWEEN "${p_desde}" 
     AND "${p_hasta}") as total_peso_todas, 
-    (select IFNULL(sum(total_g_dolar),0) from coti where estado = 'Enviado' AND date_format(fecha_reg, "%Y-%m-%d") BETWEEN "${p_desde}" 
+    (select format(IFNULL(sum(total_g_dolar),0),2,'en_US') total_g_dolar from coti where estado = 'Enviado' AND date_format(fecha_reg, "%Y-%m-%d") BETWEEN "${p_desde}" 
     AND "${p_hasta}") as total_dolar_todas`;
 
     //return console.log(query);
