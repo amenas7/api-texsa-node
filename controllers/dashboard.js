@@ -82,7 +82,7 @@ function consultar_tabla_uno(req, res, p_desde, p_hasta) {
     const query = `
     select 
     (select count(cotiID) from coti where date_format(fecha_reg, "%Y-%m-%d") BETWEEN "${p_desde}" 
-    AND "${p_hasta}") as nro_cotizaciones_todas,  
+    AND "${p_hasta}") as nro_cotizaciones_todas,   
     (select IFNULL(sum(total_g_sol),0) from coti where tipo_moneda = 'Sol' AND date_format(fecha_reg, "%Y-%m-%d") BETWEEN "${p_desde}" 
     AND "${p_hasta}") as total_pen_todas, 
     (select IFNULL(sum(total_g_peso),0) from coti where tipo_moneda = 'Peso' AND date_format(fecha_reg, "%Y-%m-%d") BETWEEN "${p_desde}" 
