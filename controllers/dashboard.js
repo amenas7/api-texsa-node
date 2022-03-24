@@ -83,11 +83,11 @@ function consultar_tabla_uno(req, res, p_desde, p_hasta) {
     select 
     (select count(cotiID) from coti where date_format(fecha_reg, "%Y-%m-%d") BETWEEN "${p_desde}" 
     AND "${p_hasta}") as nro_cotizaciones_todas,   
-    (select IFNULL(sum(total_g_sol),0) from coti where tipo_moneda = 'Sol' AND date_format(fecha_reg, "%Y-%m-%d") BETWEEN "${p_desde}" 
+    (select format(IFNULL(sum(total_g_sol),0),2,'en_US') total_g_sol from coti where tipo_moneda = 'Sol' AND date_format(fecha_reg, "%Y-%m-%d") BETWEEN "${p_desde}" 
     AND "${p_hasta}") as total_pen_todas, 
-    (select IFNULL(sum(total_g_peso),0) from coti where tipo_moneda = 'Peso' AND date_format(fecha_reg, "%Y-%m-%d") BETWEEN "${p_desde}" 
+    (select format(IFNULL(sum(total_g_peso),0),0,'de_DE') total_g_peso from coti where tipo_moneda = 'Peso' AND date_format(fecha_reg, "%Y-%m-%d") BETWEEN "${p_desde}" 
     AND "${p_hasta}") as total_peso_todas, 
-    (select IFNULL(sum(total_g_dolar),0) from coti where tipo_moneda = 'Dolar' AND date_format(fecha_reg, "%Y-%m-%d") BETWEEN "${p_desde}" 
+    (select format(IFNULL(sum(total_g_dolar),0),0),2,'en_US') total_g_dolar from coti where tipo_moneda = 'Dolar' AND date_format(fecha_reg, "%Y-%m-%d") BETWEEN "${p_desde}" 
     AND "${p_hasta}") as total_dolar_todas`;
 
     //return console.log(query);
