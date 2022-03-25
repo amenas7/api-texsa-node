@@ -38,6 +38,11 @@ router.get('/:id',
             getProductoByID 
 );
 
+router.get('/unico/:codigo', 
+            //validarJWT,
+            getProductoByCodigo 
+);
+
 router.post('/', 
             [
                 //check('nombre', 'El nombre del deporte es obligatorio').not().isEmpty(),

@@ -114,6 +114,40 @@ const getProductoByID = async(req, res) => {
     }
 }
 
+// ==========================================
+// obtener un producto por el Codigo
+// ==========================================
+const getProductoByCodigo = async(req, res) => {
+
+    try {
+        const codigo = req.params.codigo;
+
+        const obtenerReg = await consultar_existe_producto_codigo(req, res, codigo);
+
+        if ( !obtenerReg ) {
+            return res.status(500).json({
+                ok: false,
+                mensaje: 'No existe un producto con el parametro buscado'
+            })
+        }
+
+        const p_consultar_datos_producto_Codigo = await consultar_datos_producto_Codigo(req, res, codigo);
+
+        return res.status(200).json({
+                ok: true,
+                data: p_consultar_datos_producto_Codigo,
+                uid: req.uid
+            }) 
+        
+    } catch (error) {
+        res.status(500).json({
+            ok: false,
+            mensaje: 'Error en el servidor',
+            error: error.message
+        });
+    }
+}
+
 function consultar_datos_productos(req, res) {
     const query = `
     SELECT *
@@ -159,10 +193,39 @@ function consultar_datos_productoID(req, res, id) {
     });
 }
 
+function consultar_datos_producto_Codigo(req, res, codigo) {
+    const query = `
+    select productoID, codigo_producto from producto where codigo_producto LIKE '%${codigo}%' limit 10 `;
+
+    return new Promise((resolve, reject) => {
+        consql.query(query, (err, rows, fields) => {
+            if (err) {
+                return reject(err);
+            }
+            resolve(rows);
+        });
+    });
+}
+
 function consultar_existe_producto(req, res, id) {
     const query = `
     select count(productoID) as cantidad from producto
     where productoID = "${id}" `;
+
+    return new Promise((resolve, reject) => {
+        consql.query(query, (err, rows, fields) => {
+            if (err) {
+                return reject(err);
+            }
+            resolve(rows[0]['cantidad']);
+        });
+    });
+}
+
+function consultar_existe_producto_codigo(req, res, codigo) {
+    const query = `
+    select count(productoID) as cantidad from producto
+    where codigo_producto = "${codigo}" `;
 
     return new Promise((resolve, reject) => {
         consql.query(query, (err, rows, fields) => {
@@ -644,5 +707,6 @@ module.exports = {
     getProductoByID,
     crearProducto,
     actualizarProducto,
-    borrarProducto
+    borrarProducto,
+    getProductoByCodigo
 }
